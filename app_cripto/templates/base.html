@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Criptomonedas</title>
+    <link rel="stylesheet" href="/static/pico.css">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header>
+        <div class = "container">
+            Aplicación Criptomonedas
+        </div>
+    </header>
+    <nav class = "container">
+        <ul>
+            <li><a href="/" role="button" class="contrast">Inicio</a></li>
+            <li><a href="/purchase" role="button" class="contrast">Compra</a></li>
+            <li><a href="/status" role="button" class="contrast">Estado</a></li>
+        </ul>
+    </nav>
+
+    <section id="cuerpo" class = "container">
+        {% block section %}
+        {% endblock %} 
+    </section>
+    
+    <footer>
+        <div class="container">
+            Copyright&copy;2023  Patricia Gutiérrez Rivas. Todos los derechos reservados.
+        </div>
+    </footer>
+</body>
+</html>

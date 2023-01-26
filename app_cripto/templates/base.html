@@ -16,9 +16,9 @@
     </header>
     <nav class = "container">
         <ul>
-            <li><a href="/" role="button" class="contrast">Inicio</a></li>
-            <li><a href="/purchase" role="button" class="contrast">Compra</a></li>
-            <li><a href="/status" role="button" class="contrast">Estado</a></li>
+            <li><a href="/" role="button" class="contrast"{% if isIndex %}disabled="true"{% endif %}>Inicio</a></li>
+            <li><a href="/purchase" role="button" class="contrast"{% if isPurchase %}disabled="true"{% endif %}>Compra</a></li>
+            <li><a href="/status" role="button" class="contrast"{% if isStatus %}disabled="true"{% endif %}>Estado</a></li>
         </ul>
     </nav>
 
@@ -29,7 +29,7 @@
     
     <footer>
         <div class="container">
-            Copyright&copy;2023  Patricia Gutiérrez Rivas. Todos los derechos reservados.
+            &copy; 2023  Patricia Gutiérrez Rivas. Todos los derechos reservados.
         </div>
     </footer>
 </body>

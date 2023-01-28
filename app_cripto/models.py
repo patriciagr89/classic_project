@@ -2,7 +2,6 @@ import sqlite3
 from config import *
 from app_cripto.conexion import Conexion
 
-
 def select_status():
     connect = Conexion("SELECT sum(cantidad_from) as invertido, sum(cantidad_to) as recuperado FROM movements WHERE moneda_from = 'EUR';")
 

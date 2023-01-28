@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 
 {% block section %}
-<h1>Estado de la inversión</h1>
 {% if movements is none or movements|length < 1 %}
     SIN MOVIMIENTOS.
 {% else %}
-        <table role="grid">
+        <table role="grid" class="nowrap">
             <thead>
                 <tr>
                     <th>Invertido</th>
                     <th>Recuperado</th>
                     <th>Valor compra</th>
                     <th>Valor actual</th>
+                    <th>Resultado</th>
                 </tr>
 
             </thead>
@@ -21,6 +21,7 @@
                     <td>{{movements.recuperado}}</td>
                     <td>{{movements.invertido - movements.recuperado}}</td>
                     <td>Pendiente</td>
+                    <td {% if result < 0 %} class="red" {% else %} class="green"{% endif %}>Valor actual - Valor de compra</td>
                 </tr>
             </tbody>
         </table>

@@ -20,3 +20,33 @@ body{
     display: grid;
     grid-template-rows: auto 80px 1fr auto;
 }
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.center {
+    margin: 0 auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.submit {
+    background-color: #2da44e;
+    border-radius: 5px;
+    border-color: #2da44e;
+    font-size: 17px;
+    font-family: 'Source Sans Pro', sans-serif;
+    padding: 6px 18px;
+    
+}

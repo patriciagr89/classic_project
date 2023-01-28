@@ -1,10 +1,10 @@
 CREATE TABLE "movements" (
-	"id"	INTEGER,
+	"id"	INTEGER NOT NULL UNIQUE,
 	"date"	TEXT NOT NULL,
 	"time"	TEXT NOT NULL,
-	"moneda_from"	TEXT NOT NULL,
-	"cantidad_from"	REAL NOT NULL,
-	"moneda_to"	TEXT NOT NULL,
-	"cantidad_to"	REAL NOT NULL,
+	"coin_from"	TEXT NOT NULL,
+	"quantity_from"	REAL NOT NULL,
+	"coin_to"	TEXT NOT NULL,
+	"quantity_to"	REAL NOT NULL,
 	PRIMARY KEY("id" AUTOINCREMENT)
 )

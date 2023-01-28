@@ -2,32 +2,36 @@
 
 {% block section %}
 <h1>Listado de movimientos</h1>
-<figure>
-    <table role="grid">
-        <thead>
-            <tr>
-                <th>Fecha</th>
-                <th>Hora</th>
-                <th>Moneda_from</th>
-                <th>Cantidad_from</th>
-                <th>Moneda_to</th>
-                <th>Cantidad_to</th>
-                <th>Precio Unitario</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for movements in data %}
-            <tr>
-                <td>{{movements.date}}</td>
-                <td>{{movements.time}}</td>
-                <td>{{movements.moneda_from}}</td>
-                <td>{{movements.cantidad_from}}</td>
-                <td>{{movements.moneda_to}}</td>
-                <td>{{movements.cantidad_to}}</td>
-                <td>{{movements.cantidad_from / movements.cantidad_to}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</figure>
+{% if movements is none or movements|length < 1 %}
+    SIN MOVIMIENTOS.
+{% else %}
+    <figure>
+        <table role="grid">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Moneda_from</th>
+                    <th>Cantidad_from</th>
+                    <th>Moneda_to</th>
+                    <th>Cantidad_to</th>
+                    <th>Precio Unitario</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for movement in movements %}
+                <tr>
+                    <td>{{movement.date}}</td>
+                    <td>{{movement.time}}</td>
+                    <td>{{movement.moneda_from}}</td>
+                    <td>{{movement.cantidad_from}}</td>
+                    <td>{{movement.moneda_to}}</td>
+                    <td>{{movement.cantidad_to}}</td>
+                    <td>{{movement.cantidad_from / movement.cantidad_to}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </figure>
+{% endif %}
 {% endblock %}

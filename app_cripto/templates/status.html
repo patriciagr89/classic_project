@@ -2,7 +2,9 @@
 
 {% block section %}
 <h1>Estado de la inversión</h1>
-
+{% if movements is none or movements|length < 1 %}
+    SIN MOVIMIENTOS.
+{% else %}
         <table role="grid">
             <thead>
                 <tr>
@@ -15,11 +17,12 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>{{data.invertido}}</td>
-                    <td>{{data.recuperado}}</td>
-                    <td>{{data.invertido - data.recuperado}}</td>
+                    <td>{{movements.invertido}}</td>
+                    <td>{{movements.recuperado}}</td>
+                    <td>{{movements.invertido - movements.recuperado}}</td>
                     <td>Pendiente</td>
                 </tr>
             </tbody>
         </table>
+{% endif %}
 {% endblock %}

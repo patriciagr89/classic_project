@@ -6,14 +6,17 @@
 
     <div class="grid">
   
-      <label for="moneda_from">Moneda Origen:
-        <select id="moneda_from" name="moneda_from" required>
-          <option>…</option>
+      <label for="coin_from">Moneda Origen:
+        <select id="coin_from" name="coin_from" required>
+          <option disabled selected value> -- Seleccionar -- </option>
+        {% for movement in movements %}
+          <option>{{movement.coin_from}}</option>
+        {% endfor %}
         </select>
       </label>
     
-      <label for="moneda_to">Moneda destino:
-        <select id="moneda_to" name="moneda_to" required>
+      <label for="coin_to">Moneda destino:
+        <select id="coin_to" name="coin_to" required>
           <option disabled selected value> -- Seleccionar -- </option>
         {% for coin in coins %}
           <option>{{coin.coinName}}</option>

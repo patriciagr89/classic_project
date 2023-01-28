@@ -48,7 +48,28 @@ def select_all():
 
     return resultado
 
-def select_coins():
+def select_coins_from():
+    connect = Conexion("SELECT DISTINCT coin_from FROM movements ORDER BY id;")
+
+    filas = connect.res.fetchall()
+    columnas = connect.res.description
+
+    resultado = []
+
+    for fila in filas:
+        dato = {}
+        posicion = 0
+
+        for campo in columnas:
+            dato[campo[0]] = fila[posicion]
+            posicion += 1
+        resultado.append(dato)
+
+    connect.con.close()
+
+    return resultado
+
+def select_coins_to():
     connect = Conexion("SELECT idCoin,coinName FROM coins ORDER BY idCoin;")
 
     filas = connect.res.fetchall()

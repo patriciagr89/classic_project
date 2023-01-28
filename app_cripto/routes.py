@@ -9,8 +9,9 @@ def index():
 
 @app.route("/purchase", methods = ["POST","GET"])
 def purchase():
-    coinslist = select_coins()
-    return render_template("purchase.html", coins = coinslist, title = "Compra/Venta/Tradeo", isPurchase = True)
+    coins_from = select_coins_from()
+    coins_to = select_coins_to()
+    return render_template("purchase.html", coins = coins_to, movements = coins_from, title = "Compra/Venta/Tradeo", isPurchase = True)
 
 @app.route("/status")
 def status():

@@ -3,10 +3,10 @@
 {% block section %}
 
 <form action = "/purchase" method = "post">
-
-    <div class="grid">
   
-      <label for="coin_from">Moneda Origen:
+    <div class="row" style="border: 1px dotted brown;">
+
+      <label class="col-6" for="coin_from">Moneda Origen:
         <select id="coin_from" name="coin_from" required>
           <option disabled selected value> -- Seleccionar -- </option>
         {% for movement in movements %}
@@ -14,8 +14,8 @@
         {% endfor %}
         </select>
       </label>
-    
-      <label for="coin_to">Moneda destino:
+
+      <label class="col-6" for="coin_to">Moneda destino:
         <select id="coin_to" name="coin_to" required>
           <option disabled selected value> -- Seleccionar -- </option>
         {% for coin in coins %}
@@ -23,30 +23,28 @@
         {% endfor %}
         </select>
       </label>
+
     </div>
     
-    <div class="grid">
+    <div class="row" style="border: 1px dotted brown;">
 
-      <label for="cantidad_from">
+      <label class="col-5" for="cantidad_from">
         Cantidad a invertir:
         <input type="float" id="cantidad_from" name="cantidad_from" placeholder="Quiero gastar" required>
-
-        <a href="#" class="center">
-          <span class="material-symbols-outlined">
-              calculate
-          </span>
-        </a>
-
       </label>
 
-      <label for="cantidad_to">
+      <div class="col-2">
+        <a href="#" role="button" class="contrast" {% if isIndex %} disabled="true" {% endif %}><span class="material-symbols-outlined">calculate</span></a>
+      </div>
+      
+      <label class="col-5" for="cantidad_to">
         Cantidad final:
         <input type="float" id="cantidad_to" name="cantidad_to" value="Recibiré" readonly required>
       </label>
     
     </div>
   
-    <label for="pu">
+    <label class="col-5" for="pu">
       Precio unitario:
       <input type="float" id="pu" name="pu" value="Precio de referencia" readonly required>
     </label>

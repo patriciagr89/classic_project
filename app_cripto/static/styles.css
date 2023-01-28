@@ -21,6 +21,13 @@ body{
     grid-template-rows: auto 80px 1fr auto;
 }
 
+.material-symbols-outlined {
+    position: relative;
+    top: 3px;
+    margin-right: 3px;
+}
+
+
 .red {
     color: red;
 }
@@ -48,5 +55,4 @@ body{
     font-size: 17px;
     font-family: 'Source Sans Pro', sans-serif;
     padding: 6px 18px;
-    
 }

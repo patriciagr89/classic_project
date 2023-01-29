@@ -22,11 +22,11 @@ body{
 }
 
 .buy-window {
-    padding: 0 16px;
+    padding: 5% 3%;
     margin: 0 auto;
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
-    width: 800px;
+    width: 70%;
     box-shadow: 0px 2px 50px 0px rgb(28 33 47 / 5%);
 }
 
@@ -48,10 +48,6 @@ body{
 
 .nowrap {
     white-space: nowrap;
-}
-
-.center {
-    margin: 0 auto !important;
 }
 
 .text-center {
@@ -77,7 +73,13 @@ body{
 
 #calculate {
     background-color: #f4511e;
-    padding: 16px 32px;
+    padding: 15px 15px;
+    margin: 0 auto;
 }
 
+#red {
+    position: relative;
+    top: 3px;
+    margin: 0 auto;
+}
 

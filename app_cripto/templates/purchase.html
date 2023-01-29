@@ -4,7 +4,8 @@
 
 <form action = "/purchase" method = "post">
 
-  <div class="buy-window">
+  <div class="buy_window">
+
     <div class="row">
 
       <label class="col-6" for="coin_from">Moneda Origen:
@@ -35,16 +36,16 @@
       </label>
 
       <div class="col-2">
-        <button id="calculate" class="submit" type="submit"><span id="red" class="material-symbols-outlined">calculate</span></button>
+        <button class="button calculate" type="submit"><span id="red" class="material-symbols-outlined">calculate</span></button>
       </div>
-      
+
       <label class="col-5" for="cantidad_to">
         Cantidad final:
         <input type="float" id="cantidad_to" name="cantidad_to" value="Recibiré" readonly required>
       </label>
-    
+
     </div>
-  
+
     <div class="row">
 
       <div class="col-7"></div>
@@ -55,9 +56,11 @@
       </label>
 
     </div>
-    
-    <button class="row col-12 submit" type="submit">Realizar transacción</button>
 
+    <div class="col-12">
+      <button class="button" type="submit">Realizar transacción</button>
+    </div>
+    
   </div>
 </form>
 

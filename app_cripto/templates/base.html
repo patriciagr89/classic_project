@@ -15,13 +15,22 @@
             {{title}}
         </div>
     </header>
-    <nav class = "container">
+    
+    <!--<nav class = "container">
         <ul>
             <li><a href="/" role="button" class="contrast" {% if isIndex %} disabled = "true" {% endif %}><span class="material-symbols-outlined">home</span>&nbsp;Inicio</a></li>
             <li><a href="/purchase" role="button" class="contrast" {% if isPurchase %} disabled = "true" {% endif %}><span class="material-symbols-outlined">currency_exchange</span>&nbsp;Comprar/Vender</a></li>
             <li><a href="/status" role="button" class="contrast" {% if isStatus %} disabled = "true" {% endif %}><span class="material-symbols-outlined">savings</span>&nbsp;Estado</a></li>
         </ul>
-    </nav>
+    </nav>-->
+    
+    <section id="nav">
+        <nav class="btn-group container center">
+            <button class="btn {% if isIndex %} active {% endif %}"><a href="/" {% if isIndex %} disabled = "true" {% endif %}><span class="material-symbols-outlined">home</span>&nbsp;Inicio</a></button>
+            <button class="btn {% if isPurchase %} active {% endif %}"><a href="/purchase" {% if isPurchase %} disabled = "true" {% endif %}><span class="material-symbols-outlined">currency_exchange</span>&nbsp;Comprar/Vender</a></button>
+            <button class="btn {% if isStatus %} active {% endif %}"><a href="/status" {% if isStatus %} disabled = "true" {% endif %}><span class="material-symbols-outlined">savings</span>&nbsp;Estado</a></button>
+        </nav>
+    </section>
 
     <section class = "container">
         {% block section %}

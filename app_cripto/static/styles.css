@@ -1,7 +1,6 @@
 header,footer{
     background-color:#2F3E46;
     color: white;
-    font-family: 'Fjalla One', sans-serif;
     font-size: 1.6em;
 }
 
@@ -11,7 +10,8 @@ footer{
 }
 
 .contrast{
-    font-size: 0.9em;
+    font-size: 0.95em;
+    font-weight: 500;
 }
 
 body{
@@ -21,19 +21,29 @@ body{
     grid-template-rows: auto 80px 1fr auto;
 }
 
+.buy-window {
+    padding: 0 16px;
+    margin: 0 auto;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    width: 800px;
+    box-shadow: 0px 2px 50px 0px rgb(28 33 47 / 5%);
+}
+
 .material-symbols-outlined {
     position: relative;
     top: 3px;
     margin-right: 3px;
 }
 
-
 .red {
     color: red;
+    font-weight: 600;
 }
 
 .green {
     color: green;
+    font-weight: 600;
 }
 
 .nowrap {
@@ -41,7 +51,7 @@ body{
 }
 
 .center {
-    margin: 0 auto;
+    margin: 0 auto !important;
 }
 
 .text-center {
@@ -49,10 +59,25 @@ body{
 }
 
 .submit {
-    background-color: #2da44e;
-    border-radius: 5px;
-    border-color: #2da44e;
+    background-color: #02bd84;
+    border: none;
     font-size: 17px;
-    font-family: 'Source Sans Pro', sans-serif;
-    padding: 6px 18px;
+    font-weight: 500;
+    padding: 12px 32px;
+    margin: 4px 2px;
+    opacity: 0.6;
+    transition: 0.3s;
+    display: inline-block;
+    cursor: pointer;
 }
+
+.submit:hover {
+    opacity: 1
+}
+
+#calculate {
+    background-color: #f4511e;
+    padding: 16px 32px;
+}
+
+

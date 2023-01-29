@@ -3,8 +3,9 @@
 {% block section %}
 
 <form action = "/purchase" method = "post">
-  
-    <div class="row" style="border: 1px dotted brown;">
+
+  <div class="buy-window">
+    <div class="row">
 
       <label class="col-6" for="coin_from">Moneda Origen:
         <select id="coin_from" name="coin_from" required>
@@ -25,8 +26,8 @@
       </label>
 
     </div>
-    
-    <div class="row" style="border: 1px dotted brown;">
+
+    <div class="row">
 
       <label class="col-5" for="cantidad_from">
         Cantidad a invertir:
@@ -34,7 +35,7 @@
       </label>
 
       <div class="col-2">
-        <a href="#" role="button" class="contrast" {% if isIndex %} disabled="true" {% endif %}><span class="material-symbols-outlined">calculate</span></a>
+        <button id="calculate" class="submit" type="submit"><span class="material-symbols-outlined">calculate</span></button>
       </div>
       
       <label class="col-5" for="cantidad_to">
@@ -44,13 +45,17 @@
     
     </div>
   
-    <label class="col-5" for="pu">
-      Precio unitario:
-      <input type="float" id="pu" name="pu" value="Precio de referencia" readonly required>
-    </label>
-  
-    <button class="submit" type="submit">Realizar transacción</button>
-  
-  </form>
+    <div class="row">
+      <div class="col-7"></div>
+      <label class="col-5" for="unit">
+        Precio unitario:
+        <input type="float" name="unit" value="Precio de referencia" readonly required>
+      </label>
+
+    </div>
+
+    <button class="row col-12 submit" type="submit">Realizar transacción</button>
+  </div>
+</form>
 
 {% endblock %}

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block section %}
+
 {% if movements is none or movements|length < 1 %}
     SIN MOVIMIENTOS.
 {% else %}
@@ -11,9 +12,8 @@
                     <th>Recuperado</th>
                     <th>Valor compra</th>
                     <th>Valor actual</th>
-                    <th>Resultado</th>
+                    <th>Resultado de la inversión</th>
                 </tr>
-
             </thead>
             <tbody>
                 <tr>
@@ -21,7 +21,7 @@
                     <td>{{movements.recuperado}}</td>
                     <td>{{movements.invertido - movements.recuperado}}</td>
                     <td>Pendiente</td>
-                    <td {% if result < 0 %} class="red" {% else %} class="green"{% endif %}>Valor actual - Valor de compra</td>
+                    <td {% if result < 0 %} class="red" {% else %} class="green" {% endif %}>Valor actual - Valor de compra</td>
                 </tr>
             </tbody>
         </table>

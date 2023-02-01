@@ -2,8 +2,11 @@ import sqlite3
 from config import *
 from app_cripto.conexion import Conexion
 
-def change_coins(coin_from, coin_to):
-    pass
+def insert(registro):
+    connect = Conexion("insert into movements(date,time,coin_from,quantity_from,coin_to,quantity_to) values(?,?,?,?,?,?)", registro)
+    connect.con.commit()
+    connect.con.close()
+
 
 def select_status():
     connect = Conexion("SELECT sum(quantity_from) as invertido, sum(quantity_to) as recuperado FROM movements WHERE coin_from = 'EUR';")

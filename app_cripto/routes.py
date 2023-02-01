@@ -21,20 +21,21 @@ def purchase():
             quantity_from = float(request.form["quantity_from"])
             cambio = 0.768888
             quantity_to = quantity_from/cambio
+            time = 21
 
             list_request = {
                     "coins_from":request.form["coins_from"],
                     "coins_to":request.form["coins_to"],
                     "quantity_from":request.form["quantity_from"],
                     "quantity_to":str(quantity_to),
-                    "value_unit":str(cambio)
+                    "value_unit":str(cambio),
+                    "time":str(time)
                 }
-            
 
             return render_template("purchase.html", form = list_request, coins = coins_to, movements = coins_from, title = "Compra/Venta/Tradeo", isPurchase = True)
- 
+
         if "buy" in request.form:
-            return "aqui guardamos en sqlite"
+            return "Aqui guardamos en sqlite"
 
 @app.route("/status")
 def status():

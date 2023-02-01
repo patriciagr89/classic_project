@@ -2,26 +2,26 @@
 
 {% block section %}
 
-<form action = "/purchase" method = "post">
+<form action = "/purchase" method = "post" name="post">
 
   <div class="buy_window">
 
     <div class="row">
 
-      <label class="col-6" for="coin_from">Moneda Origen:
-        <select id="coin_from" name="coin_from" required>
-          <option disabled selected value> -- Seleccionar -- </option>
+      <label class="col-6" for="coins_from">Moneda Origen:
+        <select name="coins_from" value="{{form.coins_from}}" required>
+          <option disabled {% if form.coins_from is not none %} selected {% endif %} value> -- Seleccionar -- </option>
         {% for movement in movements %}
-          <option>{{movement.coin_from}}</option>
+          <option {% if form.coins_from == movement.coin_from %} selected {% endif %}>{{movement.coin_from}}</option>
         {% endfor %}
         </select>
       </label>
 
-      <label class="col-6" for="coin_to">Moneda destino:
-        <select id="coin_to" name="coin_to" required>
-          <option disabled selected value> -- Seleccionar -- </option>
+      <label class="col-6" for="coins_to">Moneda destino:
+        <select name="coins_to" value="{{form.coins_to}}" required>
+          <option disabled {% if form.coins_to is not none %} selected {% endif %} value> -- Seleccionar -- </option>
         {% for coin in coins %}
-          <option>{{coin.coinName}}</option>
+          <option {% if form.coins_to == coin.coinName %} selected {% endif %}>{{coin.coinName}}</option>
         {% endfor %}
         </select>
       </label>
@@ -30,18 +30,18 @@
 
     <div class="row">
 
-      <label class="col-5" for="cantidad_from">
+      <label class="col-5" for="quantity_from">
         Cantidad a invertir:
-        <input type="float" id="cantidad_from" name="cantidad_from" placeholder="Quiero gastar" required>
+        <input type="float" name="quantity_from" value="{{form.quantity_from}}" placeholder="Quiero gastar" required>
       </label>
 
       <div class="col-2">
-        <button class="button calculate" type="submit"><span id="red" class="material-symbols-outlined">calculate</span></button>
+        <button class="button calculate" type="submit" name="calculate"><span id="red" class="material-symbols-outlined">calculate</span></button>
       </div>
 
-      <label class="col-5" for="cantidad_to">
+      <label class="col-5" for="quantity_to">
         Cantidad final:
-        <input type="float" id="cantidad_to" name="cantidad_to" value="Recibiré" readonly required>
+        <input type="float" name="quantity_to" value="{{form.quantity_to}}" readonly required>
       </label>
 
     </div>
@@ -50,15 +50,15 @@
 
       <div class="col-7"></div>
 
-      <label class="col-5" for="unit">
+      <label class="col-5" for="value_unit">
         Precio unitario:
-        <input type="float" name="unit" value="Precio de referencia" readonly required>
+        <input type="float" name="value_unit" value="{{form.value_unit}}" readonly required>
       </label>
 
     </div>
 
     <div class="col-12">
-      <button class="button" type="submit">Realizar transacción</button>
+      <button class="button" type="submit" name="buy">Realizar transacción</button>
     </div>
     
   </div>

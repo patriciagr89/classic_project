@@ -24,10 +24,10 @@
                     <td>{{movement.date}}</td>
                     <td>{{movement.time}}</td>
                     <td>{{movement.coin_from}}</td>
-                    <td>{{movement.quantity_from}}</td>
+                    <td>{{movement.quantity_from|round(6)}}</td>
                     <td>{{movement.coin_to}}</td>
-                    <td>{{movement.quantity_to}}</td>
-                    <td>{{movement.quantity_from / movement.quantity_to}}</td>
+                    <td>{{movement.quantity_to|round(6)}}</td>
+                    <td>{{(movement.quantity_from / movement.quantity_to)|round(6) }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

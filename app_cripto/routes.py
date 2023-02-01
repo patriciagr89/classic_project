@@ -1,6 +1,8 @@
 from app_cripto import app
 from flask import Flask, render_template, request
 from app_cripto.models import *
+from app_cripto.callApi import CallApi
+from config import *
 
 @app.route("/")
 def index():
@@ -18,18 +20,17 @@ def purchase():
 
     else: 
         if "calculate" in request.form:
+            responseApi = CallApi(request.form["coins_from"], request.form["coins_to"])
             quantity_from = float(request.form["quantity_from"])
-            cambio = 0.768888
-            quantity_to = quantity_from/cambio
-            time = 21
+            quantity_to = round(float(quantity_from * responseApi.rate), 6)
 
             list_request = {
                     "coins_from":request.form["coins_from"],
                     "coins_to":request.form["coins_to"],
                     "quantity_from":request.form["quantity_from"],
                     "quantity_to":str(quantity_to),
-                    "value_unit":str(cambio),
-                    "time":str(time)
+                    "value_unit": round(float(responseApi.rate), 6),
+                    "time":str(responseApi.time)
                 }
 
             return render_template("purchase.html", form = list_request, coins = coins_to, movements = coins_from, title = "Compra/Venta/Tradeo", isPurchase = True)

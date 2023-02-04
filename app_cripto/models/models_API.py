@@ -8,4 +8,3 @@ def exchangeRate(coin_from, coin_to): #para guardar en la bbdd al pulsar el boto
         return resultCall.result
     else:    
         return "Error"
-    

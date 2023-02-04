@@ -1,8 +1,9 @@
 from app_cripto import app
-from flask import Flask, render_template, request
+from flask import Flask, flash, redirect, render_template, request, url_for
 from app_cripto.models.models_DB import *
 from app_cripto.models.models_API import *
 from config import *
+from datetime import datetime
 
 @app.route("/")
 def index():
@@ -11,7 +12,7 @@ def index():
 
 @app.route("/purchase", methods = ["POST","GET"])
 def purchase():
-
+    
     coins_from = select_coins_from()
     coins_to = select_coins_to()
 
@@ -20,6 +21,7 @@ def purchase():
 
     else: 
         if "calculate" in request.form:
+            
             response_api = exchangeRate(request.form["coins_from"], request.form["coins_to"])
             quantity_from = float(request.form["quantity_from"])
             quantity_to = float(quantity_from * response_api["rate"])
@@ -36,7 +38,18 @@ def purchase():
             return render_template("purchase.html", form = list_request, coins = coins_to, movements = coins_from, title = "Compra/Venta/Tradeo", isPurchase = True)
 
         if "buy" in request.form:
-            return "Aqui guardamos en sqlite"
+            
+            now = datetime.now()
+            
+            insert([ now.strftime("%Y-%m-%d"),
+                    now.strftime("%H:%M:%S"),
+                    request.form["coins_from"],
+                    request.form["quantity_from"],
+                    request.form["coins_to"],
+                    request.form["quantity_to"]])
+
+            flash("Transacción realizada correctamente")
+            return redirect(url_for('index'))
 
 @app.route("/status")
 def status():

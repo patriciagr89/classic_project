@@ -1,14 +1,14 @@
 import sqlite3
 from config import *
-from app_cripto.conexion import Conexion
+from app_cripto.conexion.conexion_DB import Conexion_DB
 
 def insert(registro): #para guardar en la bbdd al pulsar el boton de buy
-    connect = Conexion("insert into movements(date,time,coin_from,quantity_from,coin_to,quantity_to) values(?,?,?,?,?,?)", registro)
+    connect = Conexion_DB("insert into movements(date,time,coin_from,quantity_from,coin_to,quantity_to) values(?,?,?,?,?,?)", registro)
     connect.con.commit()
     connect.con.close()
 
 def select_status():
-    connect = Conexion("SELECT sum(quantity_from) as invertido, sum(quantity_to) as recuperado FROM movements WHERE coin_from = 'EUR';")
+    connect = Conexion_DB("SELECT sum(quantity_from) as invertido, sum(quantity_to) as recuperado FROM movements WHERE coin_from = 'EUR';")
 
     filas = connect.res.fetchall()
     columnas = connect.res.description
@@ -33,7 +33,7 @@ def select_value():
     pass
 
 def select_all():
-    connect = Conexion("SELECT id,date,time,coin_from,quantity_from,coin_to,quantity_to FROM movements ORDER BY date;")
+    connect = Conexion_DB("SELECT id,date,time,coin_from,quantity_from,coin_to,quantity_to FROM movements ORDER BY date;")
 
     filas = connect.res.fetchall()
     columnas = connect.res.description
@@ -54,7 +54,7 @@ def select_all():
     return resultado
 
 def select_coins_from():
-    connect = Conexion("SELECT DISTINCT coin_from FROM movements ORDER BY id;")
+    connect = Conexion_DB("SELECT DISTINCT coin_from FROM movements ORDER BY id;")
 
     filas = connect.res.fetchall()
     columnas = connect.res.description
@@ -75,7 +75,7 @@ def select_coins_from():
     return resultado
 
 def select_coins_to():
-    connect = Conexion("SELECT idCoin,coinName FROM coins ORDER BY idCoin;")
+    connect = Conexion_DB("SELECT idCoin,coinName FROM coins ORDER BY idCoin;")
 
     filas = connect.res.fetchall()
     columnas = connect.res.description

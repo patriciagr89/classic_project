@@ -1,7 +1,7 @@
 from app_cripto import app
 from flask import Flask, render_template, request
-from app_cripto.models import *
-from app_cripto.callApi import CallApi
+from app_cripto.models.models_DB import *
+from app_cripto.models.models_API import *
 from config import *
 
 @app.route("/")
@@ -15,22 +15,22 @@ def purchase():
     coins_from = select_coins_from()
     coins_to = select_coins_to()
 
-    if request.method == "GET":
+    if request.method == "GET": #esto es el get de la llamada a mi purchase que no es lo mismo que mi get de la llamada a la api
         return render_template("purchase.html", form = None, coins = coins_to, movements = coins_from, title = "Compra/Venta/Tradeo", isPurchase = True)
 
     else: 
         if "calculate" in request.form:
-            responseApi = CallApi(request.form["coins_from"], request.form["coins_to"])
+            response_api = exchangeRate(request.form["coins_from"], request.form["coins_to"])
             quantity_from = float(request.form["quantity_from"])
-            quantity_to = round(float(quantity_from * responseApi.rate), 6)
+            quantity_to = float(quantity_from * response_api["rate"])
 
             list_request = {
                     "coins_from":request.form["coins_from"],
                     "coins_to":request.form["coins_to"],
                     "quantity_from":request.form["quantity_from"],
                     "quantity_to":str(quantity_to),
-                    "value_unit": round(float(responseApi.rate), 6),
-                    "time":str(responseApi.time)
+                    "value_unit":str(response_api["rate"]),
+                    "time":str(response_api["time"])
                 }
 
             return render_template("purchase.html", form = list_request, coins = coins_to, movements = coins_from, title = "Compra/Venta/Tradeo", isPurchase = True)

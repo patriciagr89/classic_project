@@ -9,7 +9,7 @@ class MyForm(FlaskForm):
         DataRequired(message="Debe seleccionar una moneda origen")])
     
     quantity_from = FloatField('Cantidad a invertir', validators=[
-        DataRequired(message="La cantidad a invertir es requerida, debe ser mayor a 0")])
+        DataRequired(message="Cantidad invalida: La cantidad a invertir es requerida, debe ser mayor a 0")])
     
     coin_to= SelectField('Moneda destino', choices=[], validators=[
         DataRequired(message="Debe seleccionar una moneda destino")])
@@ -18,14 +18,15 @@ class MyForm(FlaskForm):
     
     value_unit = FloatField('Valor unitario')
     
-    submit = SubmitField('buy')
+    calculate = SubmitField('')
+    buy = SubmitField('Realizar transaccion')
 
 
-    def validate_coin_from(form,field):
-        if field.coin_from == field.coin_to:
+    def validate_coin_from(form, field):
+        if form.coin_from.data == form.coin_to.data:
             raise ValidationError("Moneda invalida: La moneda origen debe ser diferente a la moneda destino")
     
-    def validate_coin_to(form,field):
-        if field.coin_from == field.coin_to:
+    def validate_coin_to(form, field):
+        if form.coin_from.data == form.coin_to.data:
             raise ValidationError("Moneda invalida: La moneda origen debe ser diferente a la moneda destino")
     

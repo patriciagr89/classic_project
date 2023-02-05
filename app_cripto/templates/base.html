@@ -11,39 +11,42 @@
     <link rel="stylesheet" href="/static/media/">
 </head>
 <body>
-    <header>
-        <div class = "row container">
-            <div class="col-1"></div>
-            <div class="col-2"><img src="/static/media/logo_header.png"></div>
-            <div class="col-9">{{title}}</div>
-        </div>
-    </header>
+    <div id="main">
+        <header>
+            <div class = "row container">
+                <div class="col-1"></div>
+                <div class="col-2"><img src="/static/media/logo_header.png" width="140" height="140"></div>
+                <!-- <div class="col-2"><video src="/static/media/logo.mp4" width="200" height="200" autoplay></video></div> -->
+                <div class="col-9 tittle">{{title}}</div>
+            </div>
+        </header>
     
-    <!--<nav class = "container">
-        <ul>
-            <li><a href="/" role="button" class="contrast" {% if isIndex %} disabled = "true" {% endif %}><span class="material-symbols-outlined">home</span>&nbsp;Inicio</a></li>
-            <li><a href="/purchase" role="button" class="contrast" {% if isPurchase %} disabled = "true" {% endif %}><span class="material-symbols-outlined">currency_exchange</span>&nbsp;Comprar/Vender</a></li>
-            <li><a href="/status" role="button" class="contrast" {% if isStatus %} disabled = "true" {% endif %}><span class="material-symbols-outlined">savings</span>&nbsp;Estado</a></li>
-        </ul>
-    </nav>-->
+        <!--<nav class = "container">
+            <ul>
+                <li><a href="/" role="button" class="contrast" {% if isIndex %} disabled = "true" {% endif %}><span class="material-symbols-outlined">home</span>&nbsp;Inicio</a></li>
+                <li><a href="/purchase" role="button" class="contrast" {% if isPurchase %} disabled = "true" {% endif %}><span class="material-symbols-outlined">currency_exchange</span>&nbsp;Comprar/Vender</a></li>
+                <li><a href="/status" role="button" class="contrast" {% if isStatus %} disabled = "true" {% endif %}><span class="material-symbols-outlined">savings</span>&nbsp;Estado</a></li>
+            </ul>
+        </nav>-->
     
-    <section id="nav">
-        <nav class="btn-group container center">
-            <button class="btn {% if isIndex %} active {% endif %}"><a href="/" {% if isIndex %} disabled = "true" {% endif %}><span class="material-symbols-outlined">home</span>&nbsp;Inicio</a></button>
-            <button class="btn {% if isPurchase %} active {% endif %}"><a href="/purchase" {% if isPurchase %} disabled = "true" {% endif %}><span class="material-symbols-outlined">currency_exchange</span>&nbsp;Comprar/Vender</a></button>
-            <button class="btn {% if isStatus %} active {% endif %}"><a href="/status" {% if isStatus %} disabled = "true" {% endif %}><span class="material-symbols-outlined">savings</span>&nbsp;Estado</a></button>
-        </nav>
-    </section>
+        <section id="nav" class="row">
+           <nav class="btn-group container center">
+                <button class="col-4 btn {% if isIndex %} active {% endif %}"><a href="/" {% if isIndex %} disabled = "true" {% endif %}><span class="material-symbols-outlined">home</span>&nbsp;Inicio</a></button>
+                <button class="col-4 btn {% if isPurchase %} active {% endif %}"><a href="/purchase" {% if isPurchase %} disabled = "true" {% endif %}><span class="material-symbols-outlined">currency_exchange</span>&nbsp;Comprar/Vender</a></button>
+                <button class="col-4 btn {% if isStatus %} active {% endif %}"><a href="/status" {% if isStatus %} disabled = "true" {% endif %}><span class="material-symbols-outlined">savings</span>&nbsp;Estado</a></button>
+            </nav>
+        </section>
 
-    <section class = "container">
-        {% block section %}
-        {% endblock %} 
-    </section>
+        <section class = "container">
+            {% block section %}
+            {% endblock %} 
+        </section>
     
-    <footer>
-        <div class="container">
-            &copy; 2023 Patricia Gutiérrez Rivas. All rights reserved.
-        </div>
-    </footer>
+        <footer>
+            <div class="container">
+                &copy; 2023 Patricia Gutiérrez Rivas. All rights reserved.
+            </div>
+        </footer>
+    </div>
 </body>
 </html>

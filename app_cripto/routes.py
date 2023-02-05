@@ -30,37 +30,41 @@ def purchase():
     form.coin_to.choices = coins_to
 
     if request.method == "GET": #esto es el get de la llamada a mi purchase que no es lo mismo que mi get de la llamada a la api
-        return render_template("purchase.html",list_request = {}, form = form, title = "Compra/Venta/Tradeo", isPurchase = True)
+        return render_template("purchase.html", form = form, list_request = {}, title = "Compra y venta de monedas", isPurchase = True)
     else: 
         if "calculate" in request.form:
-            
-            response_api = exchangeRate(form.coin_from.data, form.coin_to.data)
-            quantity_from = float(form.quantity_from.data)
-            quantity_to = float(quantity_from * response_api["rate"])
+            if form.validate_on_submit():
+                response_api = exchangeRate(form.coin_from.data, form.coin_to.data)
+                quantity_from = float(form.quantity_from.data)
+                quantity_to = float(quantity_from * response_api["rate"])
 
-            list_request = {
-                    "coin_from":form.coin_from.data,
-                    "coin_to":form.coin_to.data,
-                    "quantity_from":form.quantity_from.data,
-                    "quantity_to":str(quantity_to),
-                    "value_unit":str(response_api["rate"])
-                }
+                list_request = {
+                        "coin_from":form.coin_from.data,
+                        "coin_to":form.coin_to.data,
+                        "quantity_from":form.quantity_from.data,
+                        "quantity_to":str(quantity_to),
+                        "value_unit":str(response_api["rate"])
+                    }
 
-            return render_template("purchase.html", form = form, list_request = list_request, title = "Compra y venta de monedas", isPurchase = True)
-
+                return render_template("purchase.html", form = form, list_request = list_request, title = "Compra y venta de monedas", isPurchase = True)
+            else:
+                return render_template("purchase.html", msgError={}, form = form, list_request = {}, title = "Compra y venta de monedas", isPurchase = True)
+        
         if "buy" in request.form:
-            
-            now = datetime.now()
-            
-            insert([now.strftime("%Y-%m-%d"),
-                    now.strftime("%H:%M:%S"),
-                    form.coin_from.data,
-                    form.quantity_from.data,
-                    form.coin_to.data,
-                    form.quantity_to.data])
+            if form.validate_on_submit():
+                now = datetime.now()
+                
+                insert([now.strftime("%Y-%m-%d"),
+                        now.strftime("%H:%M:%S"),
+                        form.coin_from.data,
+                        form.quantity_from.data,
+                        form.coin_to.data,
+                        form.quantity_to.data])
 
-            flash("¡Transacción realizada correctamente!")
-            return redirect(url_for('index'))
+                flash("¡Transacción realizada correctamente!")
+                return redirect(url_for('index'))
+            else:
+                return render_template("purchase.html", msgError={}, form = form, list_request = {}, title = "Compra y venta de monedas", isPurchase = True)
 
 @app.route("/status")
 def status():

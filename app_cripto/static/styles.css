@@ -1,24 +1,45 @@
 header,footer{
     background-color:#2F3E46;
     background-color: #282A35;
-    color: white;
-    font-size: 28px;
     justify-content: flex-start;
+    color: white;
     width: 100%;
-    display: grid;
-    grid-template-rows: auto;
+    max-width: 100%;
 }
 
-body{
+.errors {
+    color: rgb(143, 14, 14);
+    font-size: 15px;
+    
+}
+
+.errors li{
+    list-style: none;
+}
+
+#main{
     min-height: 120vh;
     background-color: #E0E1DD;
     display: grid;
     grid-template-rows: auto 120px 1fr auto;
 }
 
+.tittle {
+    line-height: 140px;
+    line-height: 460%;
+}
+
+header {
+    min-height: 150px;
+    text-align: left;
+    font-size: 28px;
+}
+
 footer{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 13px;
+    min-height: 90px;
+    line-height: 120px;
 }
 
 .btn-group .btn {
@@ -91,13 +112,12 @@ a {
 }
 
 .button {
-    background-color: #02bd84;
-    background-color: #04AA6D;
+    background-color: #04AA6D !important;
     border: none;
     font-size: 17px;
     font-weight: 500;
     padding: 12px 32px;
-    margin: 4px 2px;
+    margin: 0 auto;
     opacity: 0.6;
     transition: 0.3s;
     display: inline-block;
@@ -105,12 +125,16 @@ a {
 
 .button:hover {
     opacity: 1;
+    border: none;
 }
 
 .button.calculate {
-    background-color: #f4511e;
+    background: #F4511E url("/static/media/calculate.svg") center no-repeat !important;
+    border: none;
     padding: 15px 15px;
     margin: 0 auto;
+    position: relative;
+    top: 33px;
 }
 
 #red {

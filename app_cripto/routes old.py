@@ -4,7 +4,6 @@ from app_cripto.models.models_DB import *
 from app_cripto.models.models_API import *
 from config import *
 from datetime import datetime
-from app_cripto.forms import MyForm
 
 @app.route("/")
 def index():
@@ -14,39 +13,29 @@ def index():
 @app.route("/purchase", methods = ["POST","GET"])
 def purchase():
 
-    form = MyForm()
-
-    balances = get_balance()
-    coins_from = ["EUR"]
-    for balance in balances:
-        if balance["balance"] > 0:
-            coins_from.append(balance["cripto"])
-    form.coin_from.choices = coins_from
-
-    coins_to_objets = select_list_coins_to()
-    coins_to = []
-    for coin in coins_to_objets:
-        coins_to.append(coin["coinName"])
-    form.coin_to.choices = coins_to
+    coins_from = get_balance()
+    coins_to = select_list_coins_to()
 
     if request.method == "GET": #esto es el get de la llamada a mi purchase que no es lo mismo que mi get de la llamada a la api
-        return render_template("purchase.html",list_request = {}, form = form, title = "Compra/Venta/Tradeo", isPurchase = True)
+        return render_template("purchase.html", form = None, list_to = coins_to, list_from = coins_from, title = "Compra/Venta/Tradeo", isPurchase = True)
+
     else: 
         if "calculate" in request.form:
             
-            response_api = exchangeRate(form.coin_from.data, form.coin_to.data)
-            quantity_from = float(form.quantity_from.data)
+            response_api = exchangeRate(request.form["coin_from"], request.form["coin_to"])
+            quantity_from = float(request.form["quantity_from"])
             quantity_to = float(quantity_from * response_api["rate"])
 
             list_request = {
-                    "coin_from":form.coin_from.data,
-                    "coin_to":form.coin_to.data,
-                    "quantity_from":form.quantity_from.data,
+                    "coin_from":request.form["coin_from"],
+                    "coin_to":request.form["coin_to"],
+                    "quantity_from":request.form["quantity_from"],
                     "quantity_to":str(quantity_to),
-                    "value_unit":str(response_api["rate"])
+                    "value_unit":str(response_api["rate"]),
+                    "time":str(response_api["time"])
                 }
 
-            return render_template("purchase.html", form = form, list_request = list_request, title = "Compra y venta de monedas", isPurchase = True)
+            return render_template("purchase.html", form = list_request, list_to = coins_to, list_from = coins_from, title = "Compra y venta de monedas", isPurchase = True)
 
         if "buy" in request.form:
             
@@ -54,10 +43,10 @@ def purchase():
             
             insert([now.strftime("%Y-%m-%d"),
                     now.strftime("%H:%M:%S"),
-                    form.coin_from.data,
-                    form.quantity_from.data,
-                    form.coin_to.data,
-                    form.quantity_to.data])
+                    request.form["coin_from"],
+                    request.form["quantity_from"],
+                    request.form["coin_to"],
+                    request.form["quantity_to"]])
 
             flash("¡Transacción realizada correctamente!")
             return redirect(url_for('index'))

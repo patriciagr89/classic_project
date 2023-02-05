@@ -3,6 +3,17 @@ header,footer{
     background-color: #282A35;
     color: white;
     font-size: 28px;
+    justify-content: flex-start;
+    width: 100%;
+    display: grid;
+    grid-template-rows: auto;
+}
+
+body{
+    min-height: 120vh;
+    background-color: #E0E1DD;
+    display: grid;
+    grid-template-rows: auto 120px 1fr auto;
 }
 
 footer{
@@ -46,13 +57,6 @@ a {
 
 .center {
     margin: 0 auto;
-}
-
-body{
-    min-height: 120vh;
-    background-color: #E0E1DD;
-    display: grid;
-    grid-template-rows: auto 80px 1fr auto;
 }
 
 .buy_window {

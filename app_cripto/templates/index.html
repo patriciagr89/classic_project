@@ -1,17 +1,11 @@
 {% extends "base.html" %}
 
 {% block section %}
-<h1>Listado de movimientos</h1>
+<h4>Historial de transacciones realizadas</h4>
 
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <ul class=flashes>
-    {% for message in messages %}
-      <li>{{ message }}</li>
-    {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
+{% for message in get_flashed_messages() %}
+    <p>{{ message }}</p>
+{% endfor %}
 
 {% if movements is none or movements|length < 1 %}
     SIN MOVIMIENTOS.
@@ -38,7 +32,7 @@
                     <td>{{movement.quantity_from|round(6)}}</td>
                     <td>{{movement.coin_to}}</td>
                     <td>{{movement.quantity_to|round(6)}}</td>
-                    <td>{{(movement.quantity_from / movement.quantity_to)|round(6) }}</td>
+                    <td>{{(movement.quantity_from / movement.quantity_to)|round(6)}}</td>
                 </tr>
                 {% endfor %}
             </tbody>

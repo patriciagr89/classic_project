@@ -2,7 +2,7 @@
 
 {% block section %}
 
-{% if movements is none or movements|length < 1 %}
+{% if status is none %}
     SIN MOVIMIENTOS.
 {% else %}
         <table role="grid" class="nowrap">
@@ -17,11 +17,11 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>{{movements.invertido}}</td>
-                    <td>{{movements.recuperado}}</td>
-                    <td>{{movements.invertido - movements.recuperado}}</td>
-                    <td>Pendiente</td>
-                    <td {% if result < 0 %} class="red" {% else %} class="green" {% endif %}>Valor actual - Valor de compra</td>
+                    <td>{{status.invertido|round(6)}}</td>
+                    <td>{{status.recuperado|round(6)}}</td>
+                    <td>{{status.invertido - status.recuperado}}</td>
+                    <td>{{value|round(6)}}</td>
+                    <td class="{% if (value - (status.invertido - status.recuperado)) < 0 %} red {% else %} green {% endif %}">{{(value - (status.invertido - status.recuperado))|round(6)}}</td>
                 </tr>
             </tbody>
         </table>

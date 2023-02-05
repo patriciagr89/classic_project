@@ -7,61 +7,54 @@
   <div class="buy_window">
 
     <div class="row">
-
-      <label class="col-6" for="coins_from">Moneda Origen:
-        <select name="coins_from" value="{{form.coins_from}}" required>
-          <option disabled {% if form.coins_from is not none %} selected {% endif %} value> -- Seleccionar -- </option>
-        {% for movement in movements %}
-          <option {% if form.coins_from == movement.coin_from %} selected {% endif %}>{{movement.coin_from}}</option>
+      <label class="col-6" for="coin_from">Moneda Origen:
+        <select name="coin_from" value="{{form.coin_from}}" required>
+          <option disabled {% if form.coin_from is not none %} selected {% endif %} value> -- Seleccionar -- </option>
+          <option {% if form.coin_from == 'EUR' %} selected {% endif %}>EUR</option>
+        {% for current_coin_from in list_from %}
+          <!-- Aqui comprobar si current_coin_from.balance >0 or coin == EUR -->
+          <option {% if form.coin_from == current_coin_from.cripto %} selected {% endif %}>{{current_coin_from.cripto}}</option>
         {% endfor %}
         </select>
       </label>
-
-      <label class="col-6" for="coins_to">Moneda destino:
-        <select name="coins_to" value="{{form.coins_to}}" required>
-          <option disabled {% if form.coins_to is not none %} selected {% endif %} value> -- Seleccionar -- </option>
-        {% for coin in coins %}
-          <option {% if form.coins_to == coin.coinName %} selected {% endif %}>{{coin.coinName}}</option>
+      <label class="col-6" for="coin_to">Moneda destino:
+        <select name="coin_to" value="{{form.coin_to}}" required>
+          <option disabled {% if form.coin_to is not none %} selected {% endif %} value> -- Seleccionar -- </option>
+        {% for current_coin_to in list_to %}
+          <option {% if form.coin_to == current_coin_to.coinName %} selected {% endif %}>{{current_coin_to.coinName}}</option>
         {% endfor %}
         </select>
       </label>
-
     </div>
 
     <div class="row">
-
       <label class="col-5" for="quantity_from">
         Cantidad a invertir:
         <input type="float" name="quantity_from" value="{{form.quantity_from}}" placeholder="Quiero gastar" required>
       </label>
-
       <div class="col-2">
         <button class="button calculate" type="submit" name="calculate"><span id="red" class="material-symbols-outlined">calculate</span></button>
       </div>
-
       <label class="col-5" for="quantity_to">
         Cantidad final:
         <input type="float" name="quantity_to" value="{{form.quantity_to}}" readonly required>
       </label>
-
     </div>
 
     <div class="row">
-
       <div class="col-7"></div>
-
       <label class="col-5" for="value_unit">
-        Precio unitario:
+        Valor unitario:
         <input type="float" name="value_unit" value="{{form.value_unit}}" readonly required>
       </label>
-      <input type="text" name="time" value="{{form.time}}" readonly required>
+      <input type="hidden" name="time" value="{{form.time}}" readonly required>
     </div>
-
     <div class="col-12">
       <button class="button" type="submit" name="buy">Realizar transacción</button>
     </div>
-    
+
   </div>
+
 </form>
 
 {% endblock %}

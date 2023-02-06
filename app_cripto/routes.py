@@ -33,12 +33,11 @@ def purchase():
         return render_template("purchase.html", form = form, list_request = {}, title = "Compra y venta de monedas", isPurchase = True)
     else: 
         if "calculate" in request.form:
-            if form.validate_on_submit():
-                response_api = exchangeRate(form.coin_from.data, form.coin_to.data)
-                quantity_from = float(form.quantity_from.data)
-                quantity_to = float(quantity_from * response_api["rate"])
+            response_api = exchangeRate(form.coin_from.data, form.coin_to.data)
+            quantity_from = float(form.quantity_from.data)
+            quantity_to = float(quantity_from * response_api["rate"])
 
-                list_request = {
+            list_request = {
                         "coin_from":form.coin_from.data,
                         "coin_to":form.coin_to.data,
                         "quantity_from":form.quantity_from.data,
@@ -46,9 +45,7 @@ def purchase():
                         "value_unit":str(response_api["rate"])
                     }
 
-                return render_template("purchase.html", form = form, list_request = list_request, title = "Compra y venta de monedas", isPurchase = True)
-            else:
-                return render_template("purchase.html", msgError={}, form = form, list_request = {}, title = "Compra y venta de monedas", isPurchase = True)
+            return render_template("purchase.html", form = form, list_request = list_request, title = "Compra y venta de monedas", isPurchase = True)
         
         if "buy" in request.form:
             if form.validate_on_submit():

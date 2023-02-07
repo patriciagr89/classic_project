@@ -12,7 +12,7 @@
         {{ form.coin_from.label }}
         {{ form.coin_from(class="form-control", value=list_request.coin_from) }}
         {% for error in form.coin_from.errors %}
-        <li class="errors">{{ error }}</li>
+          <li class="errors">{{ error }}</li>
         {% endfor %}
     </div>
 
@@ -20,15 +20,15 @@
       {{ form.coin_to.label }}
       {{ form.coin_to(class="form-control", value=list_request.coin_to) }}
       {% for error in form.coin_to.errors %}
-      <li class="errors">{{ error }}</li>
+        <li class="errors">{{ error }}</li>
       {% endfor %}
     </div>
 
     <div class="form-goup col-5">
       {{ form.quantity_from.label }}
-      {{ form.quantity_from(class="form-control", value=list_request.quantity_from) }}
+      {{ form.quantity_from(class="form-control", value=list_request.quantity_from, type="number", onchange="form.test()") }}
       {% for error in form.quantity_from.errors %}
-      <li class="errors">{{ error }}</li>
+        <li class="errors">{{ error }}</li>
       {% endfor %}
     </div>
     
@@ -41,7 +41,7 @@
       {{ form.quantity_to.label }}
       {{ form.quantity_to(class="form-control", value=list_request.quantity_to, readonly=true) }}
       {% for error in form.quantity_to.errors %}
-      <li class="errors">{{ error }}</li>
+        <li class="errors">{{ error }}</li>
       {% endfor %}
     </div>
 
@@ -51,7 +51,7 @@
       {{ form.value_unit.label }}
       {{ form.value_unit(class="form-control", value=list_request.value_unit, readonly=true) }}
       {% for error in form.value_unit.errors %}
-      <li class="errors">{{ error }}</li>
+        <li class="errors">{{ error }}</li>
       {% endfor %}
     </div>
 
@@ -61,4 +61,5 @@
   </div>
 </form>
 </section>
+
 {% endblock %}

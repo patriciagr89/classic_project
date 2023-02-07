@@ -3,7 +3,7 @@
 {% block section %}
 
 {% if status is none %}
-    SIN MOVIMIENTOS.
+    <p class="message">SIN MOVIMIENTOS: no existen aún operaciones realizadas para mostrar el estado de su inversión.</p>
 {% else %}
         <table role="grid" class="nowrap">
             <thead>
@@ -28,9 +28,9 @@
 {% endif %}
 
 <div class="row">
-    <div class="col-5"><p class="legal">La inversión en criptoactivos no está regulada, puede no ser adecuada para inversores minoristas y perderse la totalidad del importe invertido.
+    <div class="col-md-5"><p class="legal">La inversión en criptoactivos no está regulada, puede no ser adecuada para inversores minoristas y perderse la totalidad del importe invertido.
         Es importante leer y comprender los riesgos de esta inversión que se explican detalladamente <a href="/disclosures">en esta ubicación</a>, donde podrá consultar la normativa publicada en BOE Núm. 14 Lunes 17 de enero de 2022, Circular 1/2022, de la CNMV Anexo II.</p></div>
-    <img class="col-6" src="/static/media/Financial.svg" width="500px">
+    <img class="col-md-6" src="/static/media/Financial.svg" width="500px">
 </div>
 
 {% endblock %}

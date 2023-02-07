@@ -8,11 +8,11 @@
 
 <hgroup>
     <h3>Consulta aquí tu historial de transacciones realizadas</h3>
-    <h6>En la siguiente tabla podrá encontrar todas sus operaciones realizadas de compra, venta y tradeo de criptomonedas pudiendo así llevar un control exhaustivo de su cartera y valores en fecha. </h6>
+    <h6>En la siguiente tabla podrá encontrar todas sus operaciones realizadas de compra, venta y tradeo de criptomonedas pudiendo así llevar un control exhaustivo de su cartera y valores en fecha: </h6>
 </hgroup>
 
 {% if movements is none or movements|length < 1 %}
-    SIN MOVIMIENTOS.
+    <p class="message">SIN MOVIMIENTOS: no existen aún operaciones realizadas para mostrar su historial.</p>
 {% else %}
     <figure class="tableScroll">
         <table role="grid" class="margin-bottom-0 nowrap">

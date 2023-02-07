@@ -37,23 +37,28 @@ def purchase():
         return render_template("purchase.html", form = form, list_request={}, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)
     else: 
         if "calculate" in request.form:
+
+            list_request = {
+                        "coin_from":form.coin_from.data,
+                        "coin_to":form.coin_to.data,
+                        "quantity_from":form.quantity_from.data,
+                        "quantity_to":"",
+                        "value_unit":""
+                    }
+
             if form.coin_from.data != form.coin_to.data:
                 response_api = exchangeRate(form.coin_from.data, form.coin_to.data)
                 quantity_from = float(form.quantity_from.data)
                 quantity_to = float(quantity_from * response_api["rate"])
 
-                list_request = {
-                            "coin_from":form.coin_from.data,
-                            "coin_to":form.coin_to.data,
-                            "quantity_from":form.quantity_from.data,
-                            "quantity_to":str(quantity_to),
-                            "value_unit":str(response_api["rate"])
-                        }
+                list_request["quantity_to"] = str(quantity_to)
+                list_request["value_unit"] = str(response_api["rate"])
 
                 return render_template("purchase.html", form = form, list_request = list_request, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)
+            
             else:
                 form.validate_on_submit()
-                return render_template("purchase.html", form = form, msgError={}, list_request={}, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)
+                return render_template("purchase.html", form = form, msgError={}, list_request=list_request, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)
         
         if "buy" in request.form:
             if form.validate_on_submit():

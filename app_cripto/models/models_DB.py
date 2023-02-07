@@ -26,7 +26,13 @@ def select_status():
         resultado.append(dato)
 
     connect.con.close()
-    return resultado[0]
+
+    status = resultado[0]
+
+    if status is not None and (status['invertido'] is None or status['recuperado'] is None):
+        status = None
+
+    return status
 
 def sum_criptos_to():
     connect = Conexion_DB("SELECT coin_to, sum(quantity_to) as sum_criptos_to FROM movements WHERE coin_to <> 'EUR' GROUP BY coin_to;")

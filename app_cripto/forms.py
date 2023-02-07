@@ -20,18 +20,3 @@ class MyForm(FlaskForm):
     
     calculate = SubmitField('')
     buy = SubmitField('Realizar transacción')
-
-    def test(form):
-        print("--------------------------------------")
-        # print(form.quantity_from.data)
-        print("--------------------------------------")
-        # form.quantity_from.data = 44
-
-    # def validate_coin_from(form):
-    #     if form.coin_from.data != form.coin_to.data:
-    #         raise ValidationError("Error: Moneda origen seleccionada debe ser diferente a moneda destino")
-    
-    # def validate_coin_to(form):
-    #     if form.coin_from.data != form.coin_to.data:
-    #         raise ValidationError("Error: Moneda origen seleccionada debe ser diferente a moneda destino")
-    

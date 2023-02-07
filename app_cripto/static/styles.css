@@ -14,14 +14,23 @@ header {
     height: 130px;
     text-align: left;
     font-size: 28px;
-    background: url("/static/media/banner1.png") center no-repeat !important;
+    background: url("/static/media/banner1.png") right no-repeat !important;
 }
 
-footer{
+footer {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 13px;
     height: 80px;
     padding-top: 30px;
+}
+
+.h {
+    font-family: Jost !important;
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: justify;
+
 }
 
 .logo {
@@ -203,5 +212,5 @@ thead th {
 }
 
 .disclosures:hover {
-    color: #5A9CE7;
+    color: #8AB4F8;
 }

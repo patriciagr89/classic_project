@@ -13,7 +13,7 @@ def index():
 
 @app.route("/disclosures")
 def disclosures():
-    return render_template("disclosures.html", title = "Menciones legales para clientes de Tradeu")
+    return render_template("disclosures.html", title = "Menciones legales para clientes de Tradue")
 
 @app.route("/purchase", methods = ["POST","GET"])
 def purchase():

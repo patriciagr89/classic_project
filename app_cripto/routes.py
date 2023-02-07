@@ -9,7 +9,7 @@ from app_cripto.forms import MyForm
 @app.route("/")
 def index():
     registros = select_all()
-    return render_template("index.html", movements = registros, title = "Tu plataforma de criptomonedas de confianza", isIndex = True)
+    return render_template("index.html", movements = registros, title = "Tradue tu plataforma de criptomonedas de confianza", isIndex = True)
 
 @app.route("/purchase", methods = ["POST","GET"])
 def purchase():
@@ -30,7 +30,7 @@ def purchase():
     form.coin_to.choices = coins_to
 
     if request.method == "GET": #esto es el get de la llamada a mi purchase que no es lo mismo que mi get de la llamada a la api
-        return render_template("purchase.html", form = form, list_request = {}, title = "Compra y venta de monedas", isPurchase = True)
+        return render_template("purchase.html", form = form, list_request = {}, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)
     else: 
         if "calculate" in request.form:
             response_api = exchangeRate(form.coin_from.data, form.coin_to.data)
@@ -45,7 +45,7 @@ def purchase():
                         "value_unit":str(response_api["rate"])
                     }
 
-            return render_template("purchase.html", form = form, list_request = list_request, title = "Compra y venta de monedas", isPurchase = True)
+            return render_template("purchase.html", form = form, list_request = list_request, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)
         
         if "buy" in request.form:
             if form.validate_on_submit():
@@ -61,7 +61,7 @@ def purchase():
                 flash("¡Transacción realizada correctamente!")
                 return redirect(url_for('index'))
             else:
-                return render_template("purchase.html", msgError={}, form = form, list_request = {}, title = "Compra y venta de monedas", isPurchase = True)
+                return render_template("purchase.html", msgError={}, form = form, list_request = {}, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)
 
 @app.route("/status")
 def status():
@@ -69,4 +69,4 @@ def status():
     status = select_status()
     current_value = current_total_value()
 
-    return render_template("status.html", status = status, value = current_value, title = "Estado de la inversión", isStatus = True, result = 0)
+    return render_template("status.html", status = status, value = current_value, title = "Controle el estado de su inversión", isStatus = True, result = 0)

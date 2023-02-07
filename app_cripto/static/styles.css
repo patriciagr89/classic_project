@@ -1,12 +1,13 @@
 @font-face {
-    font-family: fjallaOne;
-    src: url(/static/fonts/FjallaOne-Regular.ttf);
+    font-family: Jost;
+    src: url(/static/fonts/Jost-Regular.ttf);
 }
 
 header, footer{
-    background-color: #282A35;
+    background-color: #282320;
     color: white;
     max-width: 100%;
+    font-family: Jost !important;
 }
 
 header {
@@ -30,11 +31,9 @@ footer{
 }
 
 .tittle {
-    font-family: fjallaOne !important;
     max-width: 100%;
     white-space: nowrap;
     padding-top: 44px;
-    font-family: math;
 }
 
 .nav {
@@ -45,28 +44,25 @@ footer{
 }
 
 .errors {
-    color: rgb(143, 14, 14);
+    color: #B6244F;
     font-size: 15px;
-    
-}
-
-.errors li {
-    list-style: none;
+    font-weight: 600;
+    text-align: justify;
+    list-style: none !important;
 }
 
 #main {
-    /* font-family: fjallaOne !important; */
     min-height: 120vh;
-    background-color: #E0E1DD;
+    background-color: #F2F2F2;
     display: grid;
     grid-template-rows: auto 120px 1fr auto;
     max-width: 100% !important;
+    font-family: Jost !important;
 }
 
 .contrast {
     color:white;
     width: 200px;
-    font-family: math;
 }
 
 .buy_window {
@@ -97,15 +93,16 @@ footer{
 }
 
 .button {
-    background-color: #04AA6D !important;
-    border: none;
-    font-size: 17px;
+    background-color: #282A35 !important;
+    border: none !important;
+    font-size: 20px;
     font-weight: 500;
     padding: 12px 32px;
     margin: 0 auto;
     opacity: 0.6;
     transition: 0.3s;
     display: inline-block;
+    font-family: Jost !important; 
 }
 
 .button:hover {
@@ -114,12 +111,12 @@ footer{
 }
 
 .button.calculate {
-    background: #F4511E url("/static/media/calculate.svg") center no-repeat !important;
+    background: #04AA6D url("/static/media/calculate.svg") center no-repeat !important;
     border: none;
     padding: 15px 15px;
     margin: 0 auto;
     position: relative;
-    top: 33px;
+    top: 28px;
 }
 
 #menu {
@@ -140,7 +137,7 @@ footer{
 }
 
 #menu .button:hover {
-    background-color: #bb2356 !important;
+    background-color: #B6244F !important;
 }
 
 #red {

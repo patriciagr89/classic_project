@@ -24,42 +24,37 @@
       {% endfor %}
     </div>
 
-    <div class="row">
-
-      <div class="form-goup col-5">
-        {{ form.quantity_from.label }}
-        {{ form.quantity_from(class="form-control", value=list_request.quantity_from) }}
-        {% for error in form.quantity_from.errors %}
-        <li class="errors">{{ error }}</li>
-        {% endfor %}
-      </div>
-      
-      <div class="col-2">
-        {{ form.calculate.label }}
-        {{ form.calculate(class="button calculate")}}
-      </div>
-      
-      <div class="form-goup col-5">
-        {{ form.quantity_to.label }}
-        {{ form.quantity_to(class="form-control", value=list_request.quantity_to, readonly=true) }}
-        {% for error in form.quantity_to.errors %}
-        <li class="errors">{{ error }}</li>
-        {% endfor %}
-      </div>
-
+    <div class="form-goup col-5">
+      {{ form.quantity_from.label }}
+      {{ form.quantity_from(class="form-control", value=list_request.quantity_from) }}
+      {% for error in form.quantity_from.errors %}
+      <li class="errors">{{ error }}</li>
+      {% endfor %}
+    </div>
+    
+    <div class="col-2">
+      {{ form.calculate.label }}
+      {{ form.calculate(class="button calculate")}}
+    </div>
+    
+    <div class="form-goup col-5">
+      {{ form.quantity_to.label }}
+      {{ form.quantity_to(class="form-control", value=list_request.quantity_to, readonly=true) }}
+      {% for error in form.quantity_to.errors %}
+      <li class="errors">{{ error }}</li>
+      {% endfor %}
     </div>
 
-    <div class="row">
-      <div class="col-7"></div>
+    <div class="col-7"></div>
 
-      <div class="form-goup col-5">
-        {{ form.value_unit.label }}
-        {{ form.value_unit(class="form-control", value=list_request.value_unit, readonly=true) }}
-        {% for error in form.value_unit.errors %}
-        <li class="errors">{{ error }}</li>
-        {% endfor %}
-      </div>
+    <div class="form-goup col-5">
+      {{ form.value_unit.label }}
+      {{ form.value_unit(class="form-control", value=list_request.value_unit, readonly=true) }}
+      {% for error in form.value_unit.errors %}
+      <li class="errors">{{ error }}</li>
+      {% endfor %}
     </div>
+
     <div class="col-12">
       {{ form.buy(class="button buy") }}
     </div>

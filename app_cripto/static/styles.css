@@ -45,11 +45,13 @@ footer{
 
 #boe p{
     font-size: 16px;
+    text-align: justify;
 }
 
 #boe h7{
     font-weight: bold;
     font-size: 18px;
+    text-align: justify;
 }
 
 .errors {

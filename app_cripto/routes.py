@@ -58,7 +58,7 @@ def purchase():
                         form.coin_to.data,
                         form.quantity_to.data])
 
-                flash("¡Transacción realizada correctamente!")
+                flash("¡Su transaccin ha sido realizada correctamente!")
                 return redirect(url_for('index'))
             else:
                 return render_template("purchase.html", msgError={}, form = form, list_request = {}, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)

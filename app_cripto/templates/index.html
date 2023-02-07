@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 
 {% block section %}
-<h4>Historial de transacciones realizadas</h4>
 
 {% for message in get_flashed_messages() %}
-    <p>{{ message }}</p>
+    <p class="message">{{ message }}</p>
 {% endfor %}
+
+<hgroup>
+    <h5>Consulta aquí tu historial de transacciones realizadas</h5>
+    <h2>En la siguiente tabla podrá encontrar todas sus operaciones realizadas de compra, venta y tradeo de criptomonedas pudiendo así llevar un control exhaustivo de su cartera y valores en fecha. </h2>
+</hgroup>
 
 {% if movements is none or movements|length < 1 %}
     SIN MOVIMIENTOS.

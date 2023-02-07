@@ -19,11 +19,19 @@
                 <tr>
                     <td>{{status.invertido|round(6)}}</td>
                     <td>{{status.recuperado|round(6)}}</td>
-                    <td>{{status.invertido - status.recuperado}}</td>
+                    <td>{{(status.invertido - status.recuperado)|round(6)}}</td>
                     <td>{{value|round(6)}}</td>
                     <td class="{% if (value - (status.invertido - status.recuperado)) < 0 %} red {% else %} green {% endif %}">{{(value - (status.invertido - status.recuperado))|round(6)}}</td>
                 </tr>
             </tbody>
         </table>
 {% endif %}
+
+<div class="row">
+    <div class="col-5"><p class="legal">La inversión en criptoactivos no está regulada, puede no ser adecuada para inversores minoristas y perderse la totalidad del importe invertido.
+        Es importante leer y comprender los riesgos de esta inversión que se explican detalladamente <a href="http://www.cnmv.es/Portal/verDoc.axd?t={e14ce903-5161-4316-a480-eb1916b85084}" target="_blank">en este comunicado realizado por la CNMV y el Banco de España.</a> Las rentabilidades pasadas no constituyen un 
+        indicador fiable de las rentabilidades futuras.</p></div>
+    <img class="col-6" src="/static/media/Financial.svg" width="500px">
+</div>
+
 {% endblock %}

@@ -51,6 +51,20 @@ footer{
     list-style: none !important;
 }
 
+.message {
+    color: #B6244F;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.legal {
+    text-align: justify;
+    margin-top: 90px;
+    margin-left: 15px;
+}
+
+
 #main {
     min-height: 120vh;
     background-color: #F2F2F2;
@@ -84,7 +98,7 @@ footer{
 }
 
 .green {
-    color: green;
+    color: #04AA6D;
     font-weight: 600;
 }
 

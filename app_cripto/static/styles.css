@@ -43,6 +43,15 @@ footer{
     color: white;
 }
 
+#boe p{
+    font-size: 16px;
+}
+
+#boe h7{
+    font-weight: bold;
+    font-size: 18px;
+}
+
 .errors {
     color: #B6244F;
     font-size: 15px;
@@ -63,7 +72,6 @@ footer{
     margin-top: 90px;
     margin-left: 15px;
 }
-
 
 #main {
     min-height: 120vh;
@@ -178,5 +186,14 @@ thead th {
 }
 
 .margin-bottom-0 {
- margin-bottom: 0;
+    margin-bottom: 0;
+}
+
+.disclosures {
+    color:white;
+    text-decoration: underline;
+}
+
+.disclosures:hover {
+    color: #5A9CE7;
 }

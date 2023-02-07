@@ -19,16 +19,6 @@
             </div>
         </header>
 
-        <!-- <nav class="nav">
-            <ul>
-                <li></li>
-            </ul>
-            <ul>
-                <li><a href="/" role="button" class="contrast" {% if isIndex %} disabled = "true" {% endif %}><span class="material-symbols-outlined">home</span>&nbsp;Inicio</a></li>
-                <li><a href="/purchase" role="button" class="contrast" {% if isPurchase %} disabled = "true" {% endif %}><span class="material-symbols-outlined">currency_exchange</span>&nbsp;Compra/Venta</a></li>
-                <li><a href="/status" role="button" class="contrast" {% if isStatus %} disabled = "true" {% endif %}><span class="material-symbols-outlined">savings</span>&nbsp;Estado</a></li>
-            </ul>
-        </nav> -->
         <section id="menu">
             <div class="container">
                 <a href="/" class="button contrast" {% if isIndex %} disabled = "true" {% endif %}><span class="material-symbols-outlined">home</span>&nbsp;Inicio</a>
@@ -43,9 +33,10 @@
         </section>
     
         <footer>
-            <div class="container">
-                &copy; 2023 Patricia Gutiérrez Rivas. All rights reserved.
-            </div>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-9">&copy; 2023 Patricia Gutiérrez Rivas. All rights reserved.</div>
+                <div class="col-2"><a class="disclosures" href="/disclosures">Menciones legales</a></div>
         </footer>
     </div>
 </body>

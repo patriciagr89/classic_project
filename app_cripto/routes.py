@@ -11,6 +11,10 @@ def index():
     registros = select_all()
     return render_template("index.html", movements = registros, title = "Tradue tu plataforma de criptomonedas de confianza", isIndex = True)
 
+@app.route("/disclosures")
+def disclosures():
+    return render_template("disclosures.html", title = "Menciones legales para clientes de Tradeu")
+
 @app.route("/purchase", methods = ["POST","GET"])
 def purchase():
 

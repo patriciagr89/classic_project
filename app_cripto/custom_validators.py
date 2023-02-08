@@ -1,8 +1,6 @@
-import ipaddress
-import math
-import re
-import uuid
-from wtforms.validators import DataRequired,ValidationError
+from wtforms.validators import ValidationError
+from app_cripto.models.models_DB import *
+
 
 class NotEqualTo:
 
@@ -31,4 +29,3 @@ class NotEqualTo:
             message = field.gettext("Field must be equal to %(other_name)s.")
 
         raise ValidationError(message % d)
-

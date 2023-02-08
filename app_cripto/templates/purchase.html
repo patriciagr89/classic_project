@@ -26,7 +26,7 @@
 
       <div class="form-goup col-5">
         {{ form.quantity_from.label }}
-        {{ form.quantity_from(class="form-control", value=list_request.quantity_from, type="number", onchange="form.test()") }}
+        {{ form.quantity_from(class="form-control", value=list_request.quantity_from, type="float", onchange="form.test()") }}
         {% for error in form.quantity_from.errors %}
           <li class="errors">{{ error }}</li>
         {% endfor %}

@@ -21,3 +21,13 @@ def exchangeRate(coin_from, coin_to):  #aqui he mockeado la api cuando el limite
         "rate": 0.0000469827
     }
     return mock_api
+
+def exchangeAllCoinsTo(coin_to): #sacamos todos los valores en EUR de las criptos
+    print("llamo api")
+    resultCall = Conexion_API("GET", f"https://rest.coinapi.io/v1/exchangerate/{coin_to}?apikey={APIKEY}")
+    if resultCall.status_code == 200:
+        return resultCall.result
+    if resultCall.status_code == 429:
+        return "Has superado el límite máximo de llamadas al api por día."
+    else:    
+        return "Error"

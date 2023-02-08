@@ -47,19 +47,24 @@ def purchase():
                     }
 
             if form.coin_from.data != form.coin_to.data:
-                response_api = exchangeRate(form.coin_from.data, form.coin_to.data)
-                quantity_from = float(form.quantity_from.data)
-                quantity_to = float(quantity_from * response_api["rate"])
+                for item in balances:
+                    if item["cripto"] == form.coin_from.data and item["balance"] >= form.quantity_from.data:
+                        response_api = exchangeRate(form.coin_from.data, form.coin_to.data)
+                        quantity_from = float(form.quantity_from.data)
+                        quantity_to = float(quantity_from * response_api["rate"])
 
-                list_request["quantity_to"] = str(quantity_to)
-                list_request["value_unit"] = str(response_api["rate"])
+                        list_request["quantity_to"] = str(quantity_to)
+                        list_request["value_unit"] = str(response_api["rate"])
 
-                return render_template("purchase.html", form = form, list_request = list_request, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)
-            
+                        return render_template("purchase.html", form = form, list_request = list_request, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)
+                    else:
+                        form.validate_on_submit()
+                        return render_template("purchase.html", form = form, msgError={}, list_request=list_request, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)
             else:
                 form.validate_on_submit()
                 return render_template("purchase.html", form = form, msgError={}, list_request=list_request, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)
-        
+        #nos queda pendiente mostrar error de quantity_from no tienes suficientes monedas para vender 
+
         if "buy" in request.form:
             if form.validate_on_submit():
                 now = datetime.now()

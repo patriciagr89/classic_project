@@ -2,64 +2,64 @@
 
 {% block section %}
 <section class="purchase">
-<form action = "/purchase" method = "post" name="post">
+  <form action = "/purchase" method = "post" name="post">
 
-  {{ form.csrf_token }}
+    {{ form.csrf_token }}
 
-  <div class="buy_window row">
+    <div class="buy_window row">
 
-    <div class="form-goup col-6">
-        {{ form.coin_from.label }}
-        {{ form.coin_from(class="form-control", value=list_request.coin_from) }}
-        {% for error in form.coin_from.errors %}
+      <div class="form-goup col-6">
+          {{ form.coin_from.label }}
+          {{ form.coin_from(class="form-control", value=list_request.coin_from) }}
+          {% for error in form.coin_from.errors %}
+            <li class="errors">{{ error }}</li>
+          {% endfor %}
+      </div>
+
+      <div class="form-goup col-6">
+        {{ form.coin_to.label }}
+        {{ form.coin_to(class="form-control", value=list_request.coin_to) }}
+        {% for error in form.coin_to.errors %}
           <li class="errors">{{ error }}</li>
         {% endfor %}
-    </div>
+      </div>
 
-    <div class="form-goup col-6">
-      {{ form.coin_to.label }}
-      {{ form.coin_to(class="form-control", value=list_request.coin_to) }}
-      {% for error in form.coin_to.errors %}
-        <li class="errors">{{ error }}</li>
-      {% endfor %}
-    </div>
+      <div class="form-goup col-5">
+        {{ form.quantity_from.label }}
+        {{ form.quantity_from(class="form-control", value=list_request.quantity_from, type="number", onchange="form.test()") }}
+        {% for error in form.quantity_from.errors %}
+          <li class="errors">{{ error }}</li>
+        {% endfor %}
+      </div>
+      
+      <div class="col-2">
+        {{ form.calculate.label }}
+        {{ form.calculate(class="button calculate")}}
+      </div>
+      
+      <div class="form-goup col-5">
+        {{ form.quantity_to.label }}
+        {{ form.quantity_to(class="form-control", value=list_request.quantity_to, readonly=true) }}
+        {% for error in form.quantity_to.errors %}
+          <li class="errors">{{ error }}</li>
+        {% endfor %}
+      </div>
 
-    <div class="form-goup col-5">
-      {{ form.quantity_from.label }}
-      {{ form.quantity_from(class="form-control", value=list_request.quantity_from, type="number", onchange="form.test()") }}
-      {% for error in form.quantity_from.errors %}
-        <li class="errors">{{ error }}</li>
-      {% endfor %}
-    </div>
-    
-    <div class="col-2">
-      {{ form.calculate.label }}
-      {{ form.calculate(class="button calculate")}}
-    </div>
-    
-    <div class="form-goup col-5">
-      {{ form.quantity_to.label }}
-      {{ form.quantity_to(class="form-control", value=list_request.quantity_to, readonly=true) }}
-      {% for error in form.quantity_to.errors %}
-        <li class="errors">{{ error }}</li>
-      {% endfor %}
-    </div>
+      <div class="col-6"><img src="/static/media/Project2.svg"></div>
+      <div class="col-1"></div>
+      <div class="form-goup col-5">
+        {{ form.value_unit.label }}
+        {{ form.value_unit(class="form-control", value=list_request.value_unit, readonly=true) }}
+        {% for error in form.value_unit.errors %}
+          <li class="errors">{{ error }}</li>
+        {% endfor %}
+      </div>
 
-    <div class="col-7"></div>
-
-    <div class="form-goup col-5">
-      {{ form.value_unit.label }}
-      {{ form.value_unit(class="form-control", value=list_request.value_unit, readonly=true) }}
-      {% for error in form.value_unit.errors %}
-        <li class="errors">{{ error }}</li>
-      {% endfor %}
+      <div class="col-12">
+        {{ form.buy(class="button buy") }}
+      </div>
     </div>
-
-    <div class="col-12">
-      {{ form.buy(class="button buy") }}
-    </div>
-  </div>
-</form>
+  </form>
 </section>
 
 {% endblock %}

@@ -8,8 +8,12 @@ from app_cripto.forms import MyForm
 
 @app.route("/")
 def index():
+    return render_template("index.html", title = "Tradue tu plataforma de criptomonedas de confianza", isIndex = True)
+
+@app.route("/history")
+def history():
     registros = select_all()
-    return render_template("index.html", movements = registros, title = "Tradue tu plataforma de criptomonedas de confianza", isIndex = True)
+    return render_template("history.html", movements = registros, title = "Historial de movimientos realizados", isHistory = True)
 
 @app.route("/disclosures")
 def disclosures():
@@ -77,7 +81,7 @@ def purchase():
                         form.quantity_to.data])
 
                 flash("¡Su transacción ha sido realizada correctamente!")
-                return redirect(url_for('index'))
+                return redirect(url_for('history'))
             else:
                 return render_template("purchase.html", msgError={}, form = form, list_request={}, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)
 

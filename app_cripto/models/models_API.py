@@ -26,7 +26,10 @@ def exchangeAllCoinsTo(coin_to): #sacamos todos los valores en EUR de las cripto
     print("llamo api")
     resultCall = Conexion_API("GET", f"https://rest.coinapi.io/v1/exchangerate/{coin_to}?apikey={APIKEY}")
     if resultCall.status_code == 200:
-        return resultCall.result
+        result = []
+        if resultCall.result is not None and resultCall.result["rates"] is not None:
+            result = resultCall.result["rates"]
+        return result
     if resultCall.status_code == 429:
         return "Has superado el límite máximo de llamadas al api por día."
     else:    

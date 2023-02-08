@@ -105,19 +105,6 @@ def current_total_value(): #con esto hemos mejorada la version anterior y solo c
                     sum_criptos_exchange += current_balance
 
     return  sum_criptos_exchange
- 
-# def current_total_value(): #con esto sacabamos el value de status consumiendo 6 llamadas a la api
-    
-#     criptos_balance = get_balance()
-#     sum_criptos_exchange = 0
-
-#     for item in criptos_balance:
-#         if item["balance"] > 0:
-#             response_api = exchangeRate(item["cripto"], "EUR")
-#             current_balance = item["balance"] * response_api["rate"]
-#             sum_criptos_exchange += current_balance
-
-#     return  sum_criptos_exchange
 
 def select_all():
     connect = Conexion_DB("SELECT id,date,time,coin_from,quantity_from,coin_to,quantity_to FROM movements ORDER BY date DESC, time DESC;")

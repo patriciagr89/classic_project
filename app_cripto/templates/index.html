@@ -6,39 +6,14 @@
     <p class="message">{{ message }}</p>
 {% endfor %}
 
-<div class="h">Consulta aquí tu historial de transacciones realizadas</div>
-<p>En la siguiente tabla podrá encontrar todas sus operaciones realizadas de compra, venta y tradeo de criptomonedas pudiendo llevar así un control exhaustivo de su cartera y valores a fecha: </p>
+<div class="h2">Iniciese en el mundo cripto con Tradue</div>
 
-{% if movements is none or movements|length < 1 %}
-    <p class="message">SIN MOVIMIENTOS: no existen aún operaciones realizadas para mostrar su historial.</p>
-{% else %}
-    <figure class="tableScroll">
-        <table role="grid" class="margin-bottom-0 nowrap">
-            <thead>
-                <tr>
-                    <th>Fecha</th>
-                    <th>Hora</th>
-                    <th>Moneda origen</th>
-                    <th>Cantidad origen</th>
-                    <th>Moneda destino</th>
-                    <th>Cantidad destino</th>
-                    <th>Precio Unitario</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for movement in movements %}
-                <tr>
-                    <td>{{movement.date}}</td>
-                    <td>{{movement.time}}</td>
-                    <td>{{movement.coin_from}}</td>
-                    <td>{{movement.quantity_from|round(6)}}</td>
-                    <td>{{movement.coin_to}}</td>
-                    <td>{{movement.quantity_to|round(6)}}</td>
-                    <td>{{(movement.quantity_from / movement.quantity_to)|round(6)}}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </figure>
-{% endif %}
+<div class="row">
+    <img class="col-md-5" src="/static/media/Wallet.svg" width="500px">
+    <div class="col-md-6"><p class="legal h">Con Tradue compre bitcoin y criptomonedas facilmente y en pocos pasos.</p>
+        <p>Controle sus operaciones y el estado financiero de sus perdidas y ganancias actualizados en cada momento.</p></div>
+
+</div>
+
+
 {% endblock %}

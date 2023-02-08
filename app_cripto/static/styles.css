@@ -29,8 +29,16 @@ footer {
     font-weight: bold;
     font-size: 24px;
     margin-bottom: 20px;
-    text-align: justify;
+    text-align: justify center;
 
+}
+
+.h2 {
+    font-family: Jost !important;
+    font-weight: bold;
+    font-size: 50px;
+    color: #B6244F;
+    text-align: center;
 }
 
 .logo {

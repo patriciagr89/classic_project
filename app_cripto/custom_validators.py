@@ -1,7 +1,7 @@
 from wtforms.validators import ValidationError
 from app_cripto.models.models_DB import *
 
-
+#aqui me he basado en la validacion EqualTo de la libreria de validaciones de wtforms
 class NotEqualTo:
 
     def __init__(self, fieldname, message=None):

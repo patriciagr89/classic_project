@@ -38,7 +38,7 @@ def purchase():
         coins_to.append(coin["coinName"])
     form.coin_to.choices = coins_to
 
-    if request.method == "GET": #esto es el get de la llamada a mi purchase que no es lo mismo que mi get de la llamada a la api
+    if request.method == "GET": #esto es el get de la llamada a mi purchase que no es lo mismo que mi get de la llamada al api
         return render_template("purchase.html", form = form, list_request={}, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)
     else: 
         if "calculate" in request.form:
@@ -46,23 +46,27 @@ def purchase():
                 "coin_from": form.coin_from.data,
                 "coin_to": form.coin_to.data,
                 "quantity_from": form.quantity_from.data
-              }
+            }
 
             if form.coin_from.data != form.coin_to.data:
                 for item in balances:
-                    if float(form.quantity_from.data) > 0.0 and "EUR" == form.coin_from.data or (item["cripto"] == form.coin_from.data and item["balance"] >= form.quantity_from.data):
-                        response_api = exchangeRate(form.coin_from.data, form.coin_to.data)
-                        quantity_from = float(form.quantity_from.data)
-                        quantity_to = float(quantity_from) * float(response_api["rate"])
+                    if item["cripto"] == form.coin_from.data:
+                        if float(form.quantity_from.data) > 0.0 and ("EUR" == form.coin_from.data or item["balance"] >= float(form.quantity_from.data)):
+                            response_api = exchangeRate(form.coin_from.data, form.coin_to.data)
+                            quantity_from = float(form.quantity_from.data)
+                            quantity_to = float(quantity_from) * float(response_api["rate"])
 
-                        list_request["quantity_to"] = float(quantity_to)
-                        list_request["value_unit"] = float(response_api["rate"])
+                            list_request["quantity_to"] = float(quantity_to)
+                            list_request["value_unit"] = float(response_api["rate"])
 
-                        return render_template("purchase.html", form = form, list_request = list_request, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)
-                    else:
+                            return render_template("purchase.html", form = form, list_request = list_request, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)
+                        else:
 
-                        form.validate_on_submit()
-                        return render_template("purchase.html", form = form, msgError={}, list_request=list_request, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)
+                            form.validate_on_submit()
+                            return render_template("purchase.html", form = form, msgError={}, list_request=list_request, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)
+
+                form.validate_on_submit()
+                return render_template("purchase.html", form = form, msgError={}, list_request=list_request, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)
             else:
                 form.validate_on_submit()
                 return render_template("purchase.html", form = form, msgError={}, list_request=list_request, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)
@@ -78,7 +82,7 @@ def purchase():
                     }
             if form.validate_on_submit():
                 now = datetime.now()
-                
+
                 insert([now.strftime("%Y-%m-%d"),
                         now.strftime("%H:%M:%S"),
                         form.coin_from.data,

@@ -1,4 +1,3 @@
-import sqlite3
 from config import *
 from app_cripto.conexion.conexion_DB import Conexion_DB
 from app_cripto.models.models_API import *

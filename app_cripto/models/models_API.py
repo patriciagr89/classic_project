@@ -16,12 +16,12 @@ def exchangeRate(coin_from, coin_to): #para guardar en la bbdd al pulsar el boto
 
 
 """
-def exchangeRate(coin_from, coin_to):  #aqui he mockeado la api cuando el limite de peticiones se ha excedido de 100 al día
+def exchangeRate(coin_from, coin_to):  #aqui he mockeado la api cuando el limite de peticiones se ha excedido
     mock_api = {
         "time":"2023-01-31T20:21:18.0000000Z",
         "asset_id_base":"EUR",
         "asset_id_quote": "BTC",
-        "rate": 74000000000000.0000469827
+        "rate": 0.0000469827
     }
 
     return mock_api

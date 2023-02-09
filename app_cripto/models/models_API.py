@@ -14,7 +14,6 @@ def exchangeRate(coin_from, coin_to): #para guardar en la bbdd al pulsar el boto
         flash("¡Se ha producido un error!")
         return None
 
-
 """
 def exchangeRate(coin_from, coin_to):  #aqui he mockeado la api cuando el limite de peticiones se ha excedido
     mock_api = {

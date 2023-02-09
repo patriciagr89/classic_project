@@ -1,23 +1,39 @@
-# Aplicación Web Registro de movimientos de criptomonedas
+# Aplicación Web registro de movimientos de criptomonedas
 
-- Aplicación Web de registro de criptomonedas realizado en Python con el framework Flask, WTF-Forms, motor de base de datos SQLite y utilizando las consultas de valores relativos entre las criptomonedas a través del api https://www.coinapi.io/
+- Aplicación Web de registro de criptomonedas realizado en Python con el framework Flask, motor de base de datos SQLite y utilizando las consultas de valores relativos entre las criptomonedas a través del api https://www.coinapi.io/
 
 ## Instalación
-- Obtener la apikey en https://www.coinapi.io/
-- Renombrar el fichero 'config_template.py' a 'config.py' y en él poner tu apikey obtenida en la variable 'APIKEY'
+- Renombrar el fichero 'config_template.py' a 'config.py' y en él realizar los siguientes pasos:
+
+    1. Obtener la apikey en https://www.coinapi.io/u e introducirla en la variable 'APIKEY':
+    ```
+    APIKEY = "4545df4df545d4f5d4f545d"
+    ```
+    2. En la variable ORIGIN_DATA agregar la siguiente ruta para que coincida que el nombre de nuestro archivo SQLite:
+    ```
+    ORIGIN_DATA = "data/dbCrypto.sqlite"
+    ```
+    3. Generar la clave secreta en https://randomkeygen.com/ en introducirla en la variable 'SECRET_KEY':
+    ```
+    SECRET_KEY = "4545df4df545d4f5d4f545d"
+    ```
+    Se recomienda elegir clave de tipo "CodeIgniter Encryption Keys"
+
+- Obtener de la carpeta app_cripto\data\create las plantillas SQL para crear las tablas e insertar los datos necesarios de nuestra BBDD:
 ```
-APIKEY = "4545df4df545d4f5d4f545d"
+coins_create.sql
+movements_create.sql
 ```
 
 ## Instalación de dependencias
-- En su entorno de Python ejecutar el siguiente comando
+- En su entorno de Python ejecutar el siguiente comando:
 
 ```
 pip install -r requirements.txt
 ```
-La libreria utilizada flask https://flask.palletsprojects.com/en/2.2.x/
+Las librerias utilizadas flask https://flask.palletsprojects.com/en/2.2.x/
 
-## Renombrar el archivo .env_template a .env y agregar las siguientes lineas
+## Renombrar el archivo .env_template a .env y agregar las siguientes lineas:
 ```
 FLASK_APP = main.py
 FLASK_DEBUG = true
@@ -27,3 +43,4 @@ FLASK_DEBUG = true
 ```
 flask run
 ```
+

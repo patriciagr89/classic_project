@@ -1,16 +1,17 @@
 from flask_wtf import FlaskForm
-from wtforms import FloatField,SubmitField,SelectField, StringField, DecimalField
+from wtforms import SubmitField,SelectField, DecimalField
 from wtforms.validators import DataRequired,ValidationError
 from app_cripto.routes import *
 from app_cripto.custom_validators import *
 
+
 class MyForm(FlaskForm):
     coin_from = SelectField('Moneda origen', choices=[], validators=[
         DataRequired(message="Error: Debe seleccionar una moneda origen"), NotEqualTo("coin_to", message="Error: Moneda origen debe ser diferente a moneda destino")])
-    
+
     quantity_from = DecimalField('Cantidad a invertir', validators=[
         DataRequired(message="Error: Cantidad a invertir es requerida")])
-    
+
     coin_to= SelectField('Moneda destino', choices=[], validators=[
         DataRequired(message="Error: Debe seleccionar una moneda destino, debe ser diferente a moneda origen"), NotEqualTo("coin_from", message="Error: Moneda origen debe ser diferente a moneda destino")])
     
@@ -24,7 +25,7 @@ class MyForm(FlaskForm):
 
     def validate_quantity_from(form, field):
         if float(form.quantity_from.data) < 0.0:
-            raise ValidationError("Error: No se pueden usar números negatios")
+            raise ValidationError("Error: No se pueden usar números negativos")
         if "EUR" != form.coin_from.data:
             balances = get_balance()
             for item in balances:

@@ -2,12 +2,33 @@ from config import *
 from app_cripto.conexion.conexion_DB import Conexion_DB
 from app_cripto.models.models_API import *
 
-def insert(registro): #para guardar en la bbdd al pulsar el boton de buy
+
+def get_all_movements(): #obtenemos los movimientos de bbdd
+    connect = Conexion_DB("SELECT id,date,time,coin_from,quantity_from,coin_to,quantity_to FROM movements ORDER BY date DESC, time DESC;")
+
+    filas = connect.res.fetchall()
+    columnas = connect.res.description
+
+    resultado = []
+
+    for fila in filas:
+        dato = {}
+        posicion = 0
+
+        for campo in columnas:
+            dato[campo[0]] = fila[posicion]
+            posicion += 1
+        resultado.append(dato)
+
+    connect.con.close()
+    return resultado
+
+def insert_movement(registro): #guarda los datos introducidos en mi bbdd al pulsar boton buy
     connect = Conexion_DB("INSERT INTO movements(date,time,coin_from,quantity_from,coin_to,quantity_to) values(?,?,?,?,?,?)", registro)
     connect.con.commit()
     connect.con.close()
 
-def select_status():
+def get_status(): #obtiene importe inversion y recuperado
     connect = Conexion_DB("SELECT sum(quantity_from) as invertido, sum(quantity_to) as recuperado FROM movements WHERE coin_from = 'EUR';")
 
     filas = connect.res.fetchall()
@@ -33,7 +54,7 @@ def select_status():
 
     return status
 
-def sum_criptos_to():
+def sum_criptos_to(): #total monedas destino
     connect = Conexion_DB("SELECT coin_to, sum(quantity_to) as sum_criptos_to FROM movements WHERE coin_to <> 'EUR' GROUP BY coin_to;")
 
     filas = connect.res.fetchall()
@@ -53,7 +74,7 @@ def sum_criptos_to():
     connect.con.close()
     return resultado
 
-def sum_criptos_from():
+def sum_criptos_from(): #total monedas origen
     connect = Conexion_DB("SELECT coin_from, sum(quantity_from) as sum_criptos_from FROM movements WHERE coin_from <> 'EUR' GROUP BY coin_from;")
 
     filas = connect.res.fetchall()
@@ -73,7 +94,7 @@ def sum_criptos_from():
     connect.con.close()
     return resultado
 
-def get_balance():
+def get_balance(): #obtiene el saldo total de cada moneda restando monedas destino menos monedas origen
     sum_total = []
     criptos_added = []
     sum_to = sum_criptos_to()
@@ -90,10 +111,11 @@ def get_balance():
 
     return sum_total
 
-def current_total_value(): #con esto hemos mejorada la version anterior y solo consumimos 1 llamada a la apis
+def current_total_value(): #obtiene valor actual de todas la monedas en euros
 
     criptos_balance = get_balance()
     allCoinsToEUR = exchangeAllCoinsTo("EUR")
+
     sum_criptos_exchange = 0
 
     for item in criptos_balance:
@@ -105,27 +127,8 @@ def current_total_value(): #con esto hemos mejorada la version anterior y solo c
 
     return  sum_criptos_exchange
 
-def select_all():
-    connect = Conexion_DB("SELECT id,date,time,coin_from,quantity_from,coin_to,quantity_to FROM movements ORDER BY date DESC, time DESC;")
+def select_list_coins_to(): #obtiene listado de las monedas destino
 
-    filas = connect.res.fetchall()
-    columnas = connect.res.description
-
-    resultado = []
-
-    for fila in filas:
-        dato = {}
-        posicion = 0
-
-        for campo in columnas:
-            dato[campo[0]] = fila[posicion]
-            posicion += 1
-        resultado.append(dato)
-
-    connect.con.close()
-    return resultado
-
-def select_list_coins_to():
     connect = Conexion_DB("SELECT idCoin,coinName FROM coins ORDER BY idCoin;")
 
     filas = connect.res.fetchall()

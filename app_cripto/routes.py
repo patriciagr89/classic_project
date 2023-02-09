@@ -1,11 +1,11 @@
 from app_cripto import app
-from flask import Flask, flash, redirect, render_template, request, url_for
+from flask import flash, redirect, render_template, request, url_for
 from app_cripto.models.models_DB import *
 from app_cripto.models.models_API import *
 from config import *
 from datetime import datetime
 from app_cripto.forms import MyForm
-        
+
 
 @app.route("/")
 def index():
@@ -13,12 +13,8 @@ def index():
 
 @app.route("/history")
 def history():
-    registros = select_all()
+    registros = get_all_movements()
     return render_template("history.html", movements = registros, title = "Historial de movimientos realizados", isHistory = True)
-
-@app.route("/disclosures")
-def disclosures():
-    return render_template("disclosures.html", title = "Menciones legales para clientes de Tradue")
 
 @app.route("/purchase", methods = ["POST","GET"])
 def purchase():
@@ -38,9 +34,10 @@ def purchase():
         coins_to.append(coin["coinName"])
     form.coin_to.choices = coins_to
 
-    if request.method == "GET": #esto es el get de la llamada a mi purchase que no es lo mismo que mi get de la llamada al api
+    if request.method == "GET": #esto es el get a purchase
         return render_template("purchase.html", form = form, list_request={}, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)
-    else: 
+
+    else:
         if "calculate" in request.form:
             list_request = {
                 "coin_from": form.coin_from.data,
@@ -48,47 +45,49 @@ def purchase():
                 "quantity_from": form.quantity_from.data
             }
 
+            callExchageRate = False
+
             if form.coin_from.data != form.coin_to.data:
-                for item in balances:
-                    if item["cripto"] == form.coin_from.data:
-                        if float(form.quantity_from.data) > 0.0 and ("EUR" == form.coin_from.data or item["balance"] >= float(form.quantity_from.data)):
-                            response_api = exchangeRate(form.coin_from.data, form.coin_to.data)
-                            quantity_from = float(form.quantity_from.data)
-                            quantity_to = float(quantity_from) * float(response_api["rate"])
+                if (balances is None or len(balances) < 1) or "EUR" == form.coin_from.data:
+                    callExchageRate = "EUR" == form.coin_from.data and float(form.quantity_from.data) > 0.0
+                else :
+                    for item in balances:
+                        if item["cripto"] == form.coin_from.data:
+                            if float(form.quantity_from.data) > 0.0 and ("EUR" == form.coin_from.data or item["balance"] >= float(form.quantity_from.data)):
+                                callExchageRate = True
 
-                            list_request["quantity_to"] = float(quantity_to)
-                            list_request["value_unit"] = float(response_api["rate"])
+            if callExchageRate:
+                response_api = exchangeRate(form.coin_from.data, form.coin_to.data)
+                if response_api is not None:
+                    quantity_from = float(form.quantity_from.data)
+                    quantity_to = float(quantity_from) * float(response_api["rate"])
 
-                            return render_template("purchase.html", form = form, list_request = list_request, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)
-                        else:
-
-                            form.validate_on_submit()
-                            return render_template("purchase.html", form = form, msgError={}, list_request=list_request, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)
-
+                    list_request["quantity_to"] = float(quantity_to)
+                    list_request["value_unit"] = float(response_api["rate"])
+            else: 
                 form.validate_on_submit()
-                return render_template("purchase.html", form = form, msgError={}, list_request=list_request, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)
-            else:
-                form.validate_on_submit()
-                return render_template("purchase.html", form = form, msgError={}, list_request=list_request, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)
-        #nos queda pendiente mostrar error de quantity_from no tienes suficientes monedas para vender 
+
+            return render_template("purchase.html", form = form, msgError={}, list_request = list_request, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)
 
         if "buy" in request.form:
             list_request = {
-                        "coin_from":form.coin_from.data,
-                        "coin_to":form.coin_to.data,
-                        "quantity_from":form.quantity_from.data,
-                        "quantity_to":"",
-                        "value_unit":""
-                    }
+                "coin_from": form.coin_from.data,
+                "coin_to": form.coin_to.data,
+                "quantity_from": form.quantity_from.data,
+                "quantity_to": "",
+                "value_unit": ""
+            }
+
             if form.validate_on_submit():
+
                 now = datetime.now()
 
-                insert([now.strftime("%Y-%m-%d"),
+                insert_movement([now.strftime("%Y-%m-%d"),
                         now.strftime("%H:%M:%S"),
                         form.coin_from.data,
-                        form.quantity_from.data,
+                        float(form.quantity_from.data),
                         form.coin_to.data,
-                        form.quantity_to.data])
+                        float(form.quantity_to.data)])
 
                 flash("¡Su transacción ha sido realizada correctamente!")
                 return redirect(url_for('history'))
@@ -98,7 +97,11 @@ def purchase():
 @app.route("/status")
 def status():
 
-    status = select_status()
+    status = get_status()
     current_value = current_total_value()
 
     return render_template("status.html", status = status, value = current_value, title = "Controle el estado de su inversión", isStatus = True, result = 0)
+
+@app.route("/disclosures")
+def disclosures():
+    return render_template("disclosures.html", title = "Menciones legales para clientes de Tradue")

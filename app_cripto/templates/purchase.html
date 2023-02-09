@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 
 {% block section %}
+
+{% for message in get_flashed_messages() %}
+    <div class="h2 message margin-bottom-default">
+        <span class="material-symbols-outlined" style="font-size:40px">sentiment_very_dissatisfied</span>
+        {{ message }}
+    </div>
+{% endfor %}
+
 <section class="purchase">
   <form action = "/purchase" method = "post" name="post">
 

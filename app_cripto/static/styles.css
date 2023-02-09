@@ -215,6 +215,11 @@ thead th {
     margin-bottom: 0;
 }
 
+
+.margin-bottom-default {
+    margin-bottom: 25px;
+}
+
 .disclosures {
     color:white;
     text-decoration: underline;

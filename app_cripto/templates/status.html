@@ -2,6 +2,13 @@
 
 {% block section %}
 
+{% for message in get_flashed_messages() %}
+    <div class="h2 message margin-bottom-default">
+        <span class="material-symbols-outlined" style="font-size:40px">sentiment_very_dissatisfied</span>
+        {{ message }}
+    </div>
+{% endfor %}
+
 {% if status is none %}
     <p class="message">SIN MOVIMIENTOS: no existen aún operaciones realizadas para mostrar el estado de su inversión.</p>
 {% else %}

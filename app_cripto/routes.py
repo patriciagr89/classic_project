@@ -5,6 +5,7 @@ from app_cripto.models.models_API import *
 from config import *
 from datetime import datetime
 from app_cripto.forms import MyForm
+        
 
 @app.route("/")
 def index():
@@ -41,24 +42,21 @@ def purchase():
         return render_template("purchase.html", form = form, list_request={}, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)
     else: 
         if "calculate" in request.form:
-
             list_request = {
-                        "coin_from":form.coin_from.data,
-                        "coin_to":form.coin_to.data,
-                        "quantity_from":form.quantity_from.data,
-                        "quantity_to":"",
-                        "value_unit":""
-                    }
+                "coin_from": form.coin_from.data,
+                "coin_to": form.coin_to.data,
+                "quantity_from": form.quantity_from.data
+              }
 
             if form.coin_from.data != form.coin_to.data:
                 for item in balances:
-                    if "EUR" == form.coin_from.data or (item["cripto"] == form.coin_from.data and item["balance"] >= form.quantity_from.data):
+                    if float(form.quantity_from.data) > 0.0 and "EUR" == form.coin_from.data or (item["cripto"] == form.coin_from.data and item["balance"] >= form.quantity_from.data):
                         response_api = exchangeRate(form.coin_from.data, form.coin_to.data)
                         quantity_from = float(form.quantity_from.data)
                         quantity_to = float(quantity_from) * float(response_api["rate"])
 
-                        list_request["quantity_to"] = str(quantity_to)
-                        list_request["value_unit"] = str(response_api["rate"])
+                        list_request["quantity_to"] = float(quantity_to)
+                        list_request["value_unit"] = float(response_api["rate"])
 
                         return render_template("purchase.html", form = form, list_request = list_request, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)
                     else:

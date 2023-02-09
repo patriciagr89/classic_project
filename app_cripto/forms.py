@@ -6,27 +6,25 @@ from app_cripto.custom_validators import *
 
 class MyForm(FlaskForm):
     coin_from = SelectField('Moneda origen', choices=[], validators=[
-        DataRequired(message="Error: Debe seleccionar una moneda origen"), NotEqualTo("coin_to", message="Error: Moneda origen seleccionada debe ser diferente a moneda destino")])
+        DataRequired(message="Error: Debe seleccionar una moneda origen"), NotEqualTo("coin_to", message="Error: Moneda origen debe ser diferente a moneda destino")])
     
-    quantity_from = FloatField('Cantidad a invertir', validators=[
-        DataRequired(message="Error: Cantidad a invertir es requerida, debe ser un número mayor a 0")])
+    quantity_from = DecimalField('Cantidad a invertir', validators=[
+        DataRequired(message="Error: Cantidad a invertir es requerida")])
     
     coin_to= SelectField('Moneda destino', choices=[], validators=[
-        DataRequired(message="Error: Debe seleccionar una moneda destino, debe ser diferente a moneda origen"), NotEqualTo("coin_from", message="Error: Moneda origen seleccionada debe ser diferente a moneda destino")])
+        DataRequired(message="Error: Debe seleccionar una moneda destino, debe ser diferente a moneda origen"), NotEqualTo("coin_from", message="Error: Moneda origen debe ser diferente a moneda destino")])
     
-    quantity_to = StringField('Cantidad recibida')
+    quantity_to = DecimalField('Cantidad recibida')
     
-    value_unit = StringField('Valor unitario')
+    value_unit = DecimalField('Valor unitario')
     
     calculate = SubmitField('')
     buy = SubmitField('Realizar transacción')
 
 
-    # def validate_coin_to(form, field):
-    #     if form.coin_from.data == form.coin_to.data:
-    #         raise ValidationError("Moneda invalida: La moneda origen debe ser diferente a la moneda destino")
-
     def validate_quantity_from(form, field):
+        if float(form.quantity_from.data) < 0.0:
+            raise ValidationError("Error: No se pueden usar números negatios")
         if "EUR" != form.coin_from.data:
             balances = get_balance()
             for item in balances:
@@ -35,12 +33,12 @@ class MyForm(FlaskForm):
 
     def validate_value_unit(form, field):
         if form.value_unit.data is None or form.value_unit.data == "":
-            raise ValidationError("Error: Pulse el botón calcular para continuar")
+            raise ValidationError("Error: Sin datos")
         if float(form.quantity_to.data) != float(form.quantity_from.data) * float(form.value_unit.data):
-            raise ValidationError("Error: Pulse el botón calcular para continuar")
+            raise ValidationError("Error: Recalcule para continuar. Modificación de datos detectada ")
 
     def validate_quantity_to(form, field):
         if form.quantity_to.data is None or form.quantity_to.data == "":
-            raise ValidationError("Error: Pulse el botón calcular para continuar")
+            raise ValidationError("Error: Sin datos")
         if float(form.quantity_to.data) != float(form.quantity_from.data) * float(form.value_unit.data):
-            raise ValidationError("Error: Pulse el botón calcular para continuar")
+            raise ValidationError("Error: Recalcule para continuar. Modificación de datos detectada")

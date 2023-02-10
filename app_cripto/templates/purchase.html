@@ -42,7 +42,7 @@
       
       <div class="col-2">
         {{ form.calculate.label }}
-        {{ form.calculate(class="button calculate")}}
+        {{ form.calculate(class="button calculate", title="Calcular")}}
       </div>
       
       <div class="form-goup col-5">
@@ -65,6 +65,11 @@
 
       <div class="col-12">
         {{ form.buy(class="button buy") }}
+      </div>
+
+      <div class="form-goup col-5"> <!--Aqui compruebo que los campos coin_to y coin_from no se han modificado antes de pulsar buy-->
+        {{ form.coin_from_validator(class="form-control", value=list_request.coin_from, type="hidden", readonly=true) }}
+        {{ form.coin_to_validator(class="form-control", value=list_request.coin_to, type="hidden", readonly=true) }}
       </div>
     </div>
   </form>

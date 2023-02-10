@@ -12,3 +12,4 @@ class Conexion_API:
         self.call = requests.get(url)
         self.result = self.call.json()
         self.status_code = self.call.status_code
+        self.headers = self.call.headers

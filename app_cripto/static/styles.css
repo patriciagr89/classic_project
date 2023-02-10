@@ -148,12 +148,11 @@ footer {
 }
 
 .button.buy {
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 12px 30px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24);
 }
 
-.button:hover {
-    opacity: 0.8;
-    border: none;
+.button.buy:hover {
+    background-color: black !important;
 }
 
 .button.calculate {
@@ -163,7 +162,11 @@ footer {
     margin: 0 auto;
     position: relative;
     top: 28px;
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 12px 50px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24);
+}
+
+.button.calculate:hover {
+    background: #2B87F0 url("/static/media/calculate.svg") center no-repeat !important;
 }
 
 #menu {
@@ -188,6 +191,15 @@ footer {
     background-color: #B6244F !important;
 }
 
+.ratelimit {
+    font-size: 17px;
+    text-align: right;
+    margin-right: 40px;
+    margin-top: -40px;
+    color: #B6244F;
+    font-weight: bold;
+}
+
 #red {
     position: relative;
     top: 3px;
@@ -208,7 +220,7 @@ thead th {
 }
 
 .tableScroll {
-    max-height: 600px;
+    max-height: 468px;
 }
 
 .margin-bottom-0 {

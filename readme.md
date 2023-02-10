@@ -9,11 +9,7 @@
     ```
     APIKEY = "4545df4df545d4f5d4f545d"
     ```
-    2. En la variable ORIGIN_DATA agregar la siguiente ruta para que coincida que el nombre de nuestro archivo SQLite:
-    ```
-    ORIGIN_DATA = "data/dbCrypto.sqlite"
-    ```
-    3. Generar la clave secreta en https://randomkeygen.com/ en introducirla en la variable 'SECRET_KEY':
+    2. Generar la clave secreta en https://randomkeygen.com/ en introducirla en la variable 'SECRET_KEY':
     ```
     SECRET_KEY = "4545df4df545d4f5d4f545d"
     ```

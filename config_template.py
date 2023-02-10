@@ -1,3 +1,3 @@
-ORIGIN_DATA = "data/movements.sqlite"
 APIKEY = "INGRESE AQUI SU PROPIA APIKEY"
+ORIGIN_DATA = "data/dbCrypto.sqlite"
 SECRET_KEY = "AGREGA TU CODIGO GENERADO"

@@ -105,25 +105,26 @@ def purchase():
 
 @app.route("/status")
 def status():
-
     ratelimit_remaining = None
-    status = get_status()
-
     sum_criptos_exchange = 0
+
+    status = get_status()
     criptos_balance = get_balance()
-    resultCall = exchangeAllCoinsTo("EUR")
 
-    if resultCall is not None:
-        ratelimit_remaining = resultCall.headers["x-ratelimit-remaining"]
-        if resultCall.result is not None and resultCall.result["rates"] is not None:
-            allCoinsToEUR = resultCall.result["rates"]
+    if criptos_balance is not None and len(criptos_balance)>0:
+        resultCall = exchangeAllCoinsTo("EUR")
 
-            for item in criptos_balance:
-                if item["balance"] > 0:
-                    for item2 in allCoinsToEUR:
-                        if item["cripto"] == item2['asset_id_quote']:
-                            current_balance = item["balance"] / item2["rate"]
-                            sum_criptos_exchange += current_balance
+        if resultCall is not None:
+            ratelimit_remaining = resultCall.headers["x-ratelimit-remaining"]
+            if resultCall.result is not None and resultCall.result["rates"] is not None:
+                allCoinsToEUR = resultCall.result["rates"]
+
+                for item in criptos_balance:
+                    if item["balance"] > 0:
+                        for item2 in allCoinsToEUR:
+                            if item["cripto"] == item2['asset_id_quote']:
+                                current_balance = item["balance"] / item2["rate"]
+                                sum_criptos_exchange += current_balance
 
     return render_template("status.html", status = status, value = sum_criptos_exchange, ratelimit_remaining = ratelimit_remaining, title = "Controle el estado de su inversión", isStatus = True, result = 0)
 

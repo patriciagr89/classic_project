@@ -111,23 +111,6 @@ def get_balance(): #obtiene el saldo total de cada moneda restando monedas desti
 
     return sum_total
 
-# def current_total_value(): #obtiene valor actual de todas la monedas en euros
-#     sum_criptos_exchange = 0
-#     criptos_balance = get_balance()
-#     resultCall = exchangeAllCoinsTo("EUR")
-
-#     if resultCall is not None and resultCall.result is not None and resultCall.result["rates"] is not None:
-#         allCoinsToEUR = resultCall.result["rates"]
-
-#         for item in criptos_balance:
-#             if item["balance"] > 0:
-#                 for item2 in allCoinsToEUR:
-#                     if item["cripto"] == item2['asset_id_quote']:
-#                         current_balance = item["balance"] / item2["rate"]
-#                         sum_criptos_exchange += current_balance
-
-#     return  sum_criptos_exchange
-
 def select_list_coins_to(): #obtiene listado de las monedas destino
 
     connect = Conexion_DB("SELECT idCoin,coinName FROM coins ORDER BY idCoin;")

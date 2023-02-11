@@ -11,20 +11,23 @@
     ```
     APIKEY = "4545df4df545d4f5d4f545d"
     ```
-    2. Generar la clave secreta en https://randomkeygen.com/ en introducirla en la variable 'SECRET_KEY':
+    2. Generar la clave secreta en https://randomkeygen.com/ e introducirla en la variable 'SECRET_KEY' (se recomienda elegir clave de tipo "CodeIgniter Encryption Keys"):
     ```
     SECRET_KEY = "4545df4df545d4f5d4f545d"
     ```
-    Se recomienda elegir clave de tipo "CodeIgniter Encryption Keys"
+    3. Crear tu base de datos e introducir la ruta en la variable 'ORIGIN DATA':
+    ```
+    ORIGIN_DATA = "AQUI TU RUTA ARCHIVO BBDD.SQLITE"
+    ```
 
-- Obtener de la carpeta app_cripto\data\create las plantillas SQL para crear las tablas e insertar los datos necesarios de nuestra BBDD:
+- Obtener de la carpeta 'APP_CRIPTO\DATA\CREATE' las plantillas SQL para crear las tablas e insertar los datos necesarios de tu BBDD:
 ```
 coins_create.sql
 movements_create.sql
 ```
 
 ## Instalación de dependencias
-- En su entorno de Python ejecutar el siguiente comando:
+- En tu entorno de Python ejecutar el siguiente comando:
 
 ```
 pip install -r requirements.txt
@@ -41,4 +44,3 @@ FLASK_DEBUG = true
 ```
 flask run
 ```
-

@@ -6,8 +6,8 @@
     <p class="message">{{ message }}</p>
 {% endfor %}
 
-<div class="h">Consulta aquí tu historial de transacciones realizadas</div>
-<p>En la siguiente tabla podrá encontrar todas sus operaciones realizadas de compra, venta y tradeo de criptomonedas pudiendo llevar así un control exhaustivo de su cartera y valores a fecha: </p>
+<div class="h">Consulta aquí tu historial de transacciones</div>
+<p class="explain">En la siguiente tabla podrás encontrar todas tus operaciones realizadas y llevar un control exhaustivo de tu cartera cripto actualizada a la fecha: </p>
 
 {% if movements is none or movements|length < 1 %}
     <p class="message">SIN MOVIMIENTOS: no existen aún operaciones realizadas para mostrar su historial.</p>

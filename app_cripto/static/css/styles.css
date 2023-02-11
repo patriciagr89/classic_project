@@ -20,7 +20,7 @@ header {
 footer {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 13px;
-    height: 80px;
+    height: 90px;
     padding-top: 30px;
 }
 
@@ -36,7 +36,7 @@ footer {
 .h2 {
     font-family: Jost !important;
     font-weight: bold;
-    font-size: 50px;
+    font-size: 42px;
     color: #B6244F;
     text-align: center;
 }
@@ -92,8 +92,13 @@ footer {
     margin-left: 15px;
 }
 
+.explain {
+    font-size: 18px;
+    text-align: justify;
+}
+
 #main {
-    min-height: 120vh;
+    min-height: 110vh;
     background-color: #F2F2F2;
     display: grid;
     grid-template-rows: auto 120px 1fr auto;
@@ -109,7 +114,7 @@ footer {
 .buy_window {
     padding: 40px 22px;
     margin: 0 auto;
-    margin-top: 30px;
+    margin-top: 40px;
     max-width: 700px;
     box-shadow: 0px 2px 50px 0px rgba(28, 33, 47, 0.137);
 }
@@ -157,9 +162,7 @@ footer {
 
 .button.calculate {
     background: #5A9CE7 url("/static/media/calculate.svg") center no-repeat !important;
-    border: none;
     padding: 15px 15px;
-    margin: 0 auto;
     position: relative;
     top: 28px;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.24);
@@ -247,6 +250,18 @@ thead th {
     color: #8AB4F8;
 }
 
+.text-center {
+    text-align: center;
+}
+
+.center {
+    margin: 0 auto;
+}
+
+.bold {
+    font-weight: bold;
+}
+
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -258,10 +273,10 @@ thead th {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #a3a3a3;
+    background: #a3a3a3c2;
     border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #545658;
+    background: #545658c2;
 }

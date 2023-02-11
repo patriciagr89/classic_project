@@ -35,7 +35,7 @@ def purchase():
         coins_to.append(coin["coinName"])
     form.coin_to.choices = coins_to
 
-    if request.method == "GET": #esto es el get a purchase
+    if request.method == "GET":
         return render_template("purchase.html", ratelimit_remaining = ratelimit_remaining, form = form, list_request={}, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)
 
     else:
@@ -111,7 +111,7 @@ def status():
     status = get_status()
     criptos_balance = get_balance()
 
-    if criptos_balance is not None and len(criptos_balance)>0:
+    if criptos_balance is not None and len(criptos_balance) > 0:
         resultCall = exchangeAllCoinsTo("EUR")
 
         if resultCall is not None:

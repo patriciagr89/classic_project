@@ -9,6 +9,10 @@
     </div>
 {% endfor %}
 
+<div class="h">Opera en pocos pasos</div>
+<p class="explain">Simplemente elige las monedas con las que deseas operar y la cantidad a invertir de las mismas.
+  Asimismo, debes tener en cuenta el saldo del que dispones de cada una de tus monedas ya que la operación estará limitada al mismo: </p>
+
 <section class="purchase">
   <form action = "/purchase" method = "post" name="post">
 
@@ -71,6 +75,7 @@
         {{ form.coin_from_validator(class="form-control", value=list_request.coin_from, type="hidden", readonly=true) }}
         {{ form.coin_to_validator(class="form-control", value=list_request.coin_to, type="hidden", readonly=true) }}
       </div>
+
     </div>
   </form>
 </section>

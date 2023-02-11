@@ -3,7 +3,7 @@ from app_cripto.conexion.conexion_DB import Conexion_DB
 from app_cripto.models.models_API import *
 
 
-def get_all_movements(): #obtenemos los movimientos de bbdd
+def get_all_movements(): #obtiene los movimientos de bbdd
     connect = Conexion_DB("SELECT id,date,time,coin_from,quantity_from,coin_to,quantity_to FROM movements ORDER BY date DESC, time DESC;")
 
     filas = connect.res.fetchall()

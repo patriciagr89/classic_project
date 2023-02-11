@@ -27,14 +27,15 @@
                 <a href="/status" class="button contrast {% if isStatus %} active {% endif %}" {% if isStatus %} disabled = "true" {% endif %}><span class="material-symbols-outlined">savings</span>&nbsp;Estado</a>
             </div>
         </section>
+
         {% if ratelimit_remaining is not none and ratelimit_remaining != "" %} <!--Con esto muestro al usuario cuando gasta un llamada al api y las que le quedan-->
             <p class="ratelimit">Quedan&nbsp;{{ratelimit_remaining}}&nbsp;llamadas al Api</p>
         {% endif %}
+
         <section class = "container">
             {% block section %}
-            {% endblock %} 
+            {% endblock %}
         </section>
-    
         <footer>
             <div class="row">
                 <div class="col-1"></div>

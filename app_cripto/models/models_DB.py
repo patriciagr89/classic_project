@@ -2,9 +2,8 @@ from config import *
 from app_cripto.conexion.conexion_DB import Conexion_DB
 from app_cripto.models.models_API import *
 
-
-def get_all_movements(): #obtiene los movimientos de bbdd
-    connect = Conexion_DB("SELECT id,date,time,coin_from,quantity_from,coin_to,quantity_to FROM movements ORDER BY date DESC, time DESC;")
+def execute_DB(querySql): #para no repetir el comando de la query a la BBDD
+    connect = Conexion_DB(querySql)
 
     filas = connect.res.fetchall()
     columnas = connect.res.description
@@ -21,6 +20,7 @@ def get_all_movements(): #obtiene los movimientos de bbdd
         resultado.append(dato)
 
     connect.con.close()
+
     return resultado
 
 def insert_movement(registro): #guarda los datos introducidos en mi bbdd al pulsar boton buy
@@ -28,101 +28,39 @@ def insert_movement(registro): #guarda los datos introducidos en mi bbdd al puls
     connect.con.commit()
     connect.con.close()
 
+def get_all_movements(): #obtiene los movimientos de bbdd
+    data = execute_DB("SELECT id,date,time,coin_from,quantity_from,coin_to,quantity_to FROM movements ORDER BY date DESC, time DESC;")
+    return data
+
 def get_recuperado(): #obtiene importe status recuperado
-    connect = Conexion_DB("SELECT sum(quantity_to) as recuperado FROM movements WHERE coin_to = 'EUR';")
+    data = execute_DB("SELECT sum(quantity_to) as recuperado FROM movements WHERE coin_to = 'EUR';")
 
-    filas = connect.res.fetchall()
-    columnas = connect.res.description
+    recuperado = 0
 
-    resultado = []
+    if data[0] is not None and data[0]['recuperado'] is not None:
+        recuperado = data[0]['recuperado']
 
-    for fila in filas:
-        dato = {}
-        posicion = 0
-
-        for campo in columnas:
-            dato[campo[0]] = fila[posicion]
-            posicion += 1
-        resultado.append(dato)
-
-    connect.con.close()
-
-    status = resultado[0]
-
-    if status is None or status['recuperado'] is None:
-        status = 0
-    else:
-        status = status['recuperado']
-
-    return status
+    return recuperado
 
 def get_invertido(): #obtiene importe status inversion
-    connect = Conexion_DB("SELECT sum(quantity_from) as invertido FROM movements WHERE coin_from = 'EUR';")
+    data = execute_DB("SELECT sum(quantity_from) as invertido FROM movements WHERE coin_from = 'EUR';")
 
-    filas = connect.res.fetchall()
-    columnas = connect.res.description
+    invertido = 0
 
-    resultado = []
+    if data[0] is not None and data[0]['invertido'] is not None:
+        invertido = data[0]['invertido']
 
-    for fila in filas:
-        dato = {}
-        posicion = 0
-
-        for campo in columnas:
-            dato[campo[0]] = fila[posicion]
-            posicion += 1
-        resultado.append(dato)
-
-    connect.con.close()
-
-    status = resultado[0]
-
-    if status is None or status['invertido'] is None:
-        status = 0
-    else:
-        status = status['invertido']
-
-    return status
+    return invertido
 
 def sum_criptos_to(): #total monedas destino
-    connect = Conexion_DB("SELECT coin_to, sum(quantity_to) as sum_criptos_to FROM movements WHERE coin_to <> 'EUR' GROUP BY coin_to;")
+    data = execute_DB("SELECT coin_to, sum(quantity_to) as sum_criptos_to FROM movements WHERE coin_to <> 'EUR' GROUP BY coin_to;")
 
-    filas = connect.res.fetchall()
-    columnas = connect.res.description
-
-    resultado = []
-
-    for fila in filas:
-        dato = {}
-        posicion = 0
-
-        for campo in columnas:
-            dato[campo[0]] = fila[posicion]
-            posicion += 1
-        resultado.append(dato)
-
-    connect.con.close()
-    return resultado
+    return data
 
 def sum_criptos_from(): #total monedas origen
-    connect = Conexion_DB("SELECT coin_from, sum(quantity_from) as sum_criptos_from FROM movements WHERE coin_from <> 'EUR' GROUP BY coin_from;")
+    data = execute_DB("SELECT coin_from, sum(quantity_from) as sum_criptos_from FROM movements WHERE coin_from <> 'EUR' GROUP BY coin_from;")
 
-    filas = connect.res.fetchall()
-    columnas = connect.res.description
-
-    resultado = []
-
-    for fila in filas:
-        dato = {}
-        posicion = 0
-
-        for campo in columnas:
-            dato[campo[0]] = fila[posicion]
-            posicion += 1
-        resultado.append(dato)
-
-    connect.con.close()
-    return resultado
+    return data
 
 def get_balance(): #obtiene el saldo total de cada moneda restando monedas destino menos monedas origen
     sum_total = []
@@ -142,22 +80,6 @@ def get_balance(): #obtiene el saldo total de cada moneda restando monedas desti
     return sum_total
 
 def select_list_coins_to(): #obtiene listado de las monedas destino
+    data = execute_DB("SELECT idCoin,coinName FROM coins ORDER BY idCoin;")
 
-    connect = Conexion_DB("SELECT idCoin,coinName FROM coins ORDER BY idCoin;")
-
-    filas = connect.res.fetchall()
-    columnas = connect.res.description
-
-    resultado = []
-
-    for fila in filas:
-        dato = {}
-        posicion = 0
-
-        for campo in columnas:
-            dato[campo[0]] = fila[posicion]
-            posicion += 1
-        resultado.append(dato)
-
-    connect.con.close()
-    return resultado
+    return data

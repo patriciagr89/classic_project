@@ -47,7 +47,7 @@
       
       <div class="form-goup col-5">
         {{ form.quantity_to.label }}
-        {{ form.quantity_to(class="form-control", value=list_request.quantity_to, readonly=true) }}
+        {{ form.quantity_to(class="form-control disabled", value=list_request.quantity_to, readonly=true) }}
         {% for error in form.quantity_to.errors %}
           <li class="errors">{{ error }}</li>
         {% endfor %}
@@ -57,7 +57,7 @@
       <div class="col-1"></div>
       <div class="form-goup col-5">
         {{ form.value_unit.label }}
-        {{ form.value_unit(class="form-control", value=list_request.value_unit, readonly=true) }}
+        {{ form.value_unit(class="form-control disabled", value=list_request.value_unit, readonly=true) }}
         {% for error in form.value_unit.errors %}
           <li class="errors">{{ error }}</li>
         {% endfor %}
@@ -67,7 +67,7 @@
         {{ form.buy(class="button buy") }}
       </div>
 
-      <div class="form-goup col-5"> <!--Aqui compruebo que los campos coin_to y coin_from no se han modificado antes de pulsar buy-->
+      <div class="form-goup col-5"> <!--Con esto compruebo que los campos coin_to y coin_from no se han modificado antes de pulsar buy-->
         {{ form.coin_from_validator(class="form-control", value=list_request.coin_from, type="hidden", readonly=true) }}
         {{ form.coin_to_validator(class="form-control", value=list_request.coin_to, type="hidden", readonly=true) }}
       </div>

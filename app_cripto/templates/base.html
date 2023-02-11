@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}}</title>
     <link rel="icon" type="image/x-icon" href="/static/media/favicon.ico">
-    <link rel="stylesheet" href="/static/pico-bootstrap-grid.css">
-    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/css/pico-bootstrap-grid.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
 </head>
 <body>
@@ -27,7 +27,7 @@
                 <a href="/status" class="button contrast {% if isStatus %} active {% endif %}" {% if isStatus %} disabled = "true" {% endif %}><span class="material-symbols-outlined">savings</span>&nbsp;Estado</a>
             </div>
         </section>
-        {% if ratelimit_remaining is not none and ratelimit_remaining != "" %} 
+        {% if ratelimit_remaining is not none and ratelimit_remaining != "" %} <!--Con esto muestro al usuario cuando gasta un llamada al api y las que le quedan-->
             <p class="ratelimit">Quedan&nbsp;{{ratelimit_remaining}}&nbsp;llamadas al Api</p>
         {% endif %}
         <section class = "container">

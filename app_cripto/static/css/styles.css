@@ -166,7 +166,7 @@ footer {
 }
 
 .button.calculate:hover {
-    background: #2B87F0 url("/static/media/calculate.svg") center no-repeat !important;
+    background: #1472dd url("/static/media/calculate.svg") center no-repeat !important;
 }
 
 #menu {
@@ -223,10 +223,16 @@ thead th {
     max-height: 498px;
 }
 
+.disabled {
+    background-color: #EAEEF1;
+    color: #a1aaaf;
+    border: 1px solid #D1D7DC;
+    cursor: not-allowed;
+}
+
 .margin-bottom-0 {
     margin-bottom: 0;
 }
-
 
 .margin-bottom-default {
     margin-bottom: 25px;

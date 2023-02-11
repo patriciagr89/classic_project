@@ -28,8 +28,8 @@ def insert_movement(registro): #guarda los datos introducidos en mi bbdd al puls
     connect.con.commit()
     connect.con.close()
 
-def get_status(): #obtiene importe inversion y recuperado
-    connect = Conexion_DB("SELECT sum(quantity_from) as invertido, sum(quantity_to) as recuperado FROM movements WHERE coin_from = 'EUR';")
+def get_recuperado(): #obtiene importe status recuperado
+    connect = Conexion_DB("SELECT sum(quantity_to) as recuperado FROM movements WHERE coin_to = 'EUR';")
 
     filas = connect.res.fetchall()
     columnas = connect.res.description
@@ -49,8 +49,38 @@ def get_status(): #obtiene importe inversion y recuperado
 
     status = resultado[0]
 
-    if status is not None and (status['invertido'] is None or status['recuperado'] is None):
-        status = None
+    if status is None or status['recuperado'] is None:
+        status = 0
+    else:
+        status = status['recuperado']
+
+    return status
+
+def get_invertido(): #obtiene importe status inversion
+    connect = Conexion_DB("SELECT sum(quantity_from) as invertido FROM movements WHERE coin_from = 'EUR';")
+
+    filas = connect.res.fetchall()
+    columnas = connect.res.description
+
+    resultado = []
+
+    for fila in filas:
+        dato = {}
+        posicion = 0
+
+        for campo in columnas:
+            dato[campo[0]] = fila[posicion]
+            posicion += 1
+        resultado.append(dato)
+
+    connect.con.close()
+
+    status = resultado[0]
+
+    if status is None or status['invertido'] is None:
+        status = 0
+    else:
+        status = status['invertido']
 
     return status
 

@@ -12,7 +12,7 @@
 {% if movements is none or movements|length < 1 %}
     <p class="message">SIN MOVIMIENTOS: no existen aún operaciones realizadas para mostrar su historial.</p>
 {% else %}
-    <figure class="tableScroll">
+    <figure class="tableScroll center">
         <table role="grid" class="margin-bottom-0 nowrap">
             <thead>
                 <tr>
@@ -31,10 +31,10 @@
                     <td>{{movement.date}}</td>
                     <td>{{movement.time}}</td>
                     <td>{{movement.coin_from}}</td>
-                    <td>{{movement.quantity_from|round(6)}}</td>
+                    <td>{{movement.quantity_from|round(8)}}</td>
                     <td>{{movement.coin_to}}</td>
-                    <td>{{movement.quantity_to|round(6)}}</td>
-                    <td>{{(movement.quantity_from / movement.quantity_to)|round(6)}}</td>
+                    <td>{{movement.quantity_to|round(8)}}</td>
+                    <td>{{(movement.quantity_from / movement.quantity_to)|round(8)}}</td>
                 </tr>
                 {% endfor %}
             </tbody>

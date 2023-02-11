@@ -36,7 +36,7 @@ def purchase():
     form.coin_to.choices = coins_to
 
     if request.method == "GET":
-        return render_template("purchase.html", ratelimit_remaining = ratelimit_remaining, form = form, list_request={}, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)
+        return render_template("purchase.html", ratelimit_remaining = ratelimit_remaining, form = form, list_request={}, balances = balances, title = "Compra y vende criptomonedas en cuestión de minutos", isPurchase = True)
 
     else:
         if "calculate" in request.form:
@@ -76,7 +76,7 @@ def purchase():
             else: 
                 form.validate_on_submit()
 
-            return render_template("purchase.html", form = form, msgError={}, list_request = list_request, ratelimit_remaining = ratelimit_remaining, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)
+            return render_template("purchase.html", form = form, msgError={}, list_request = list_request, ratelimit_remaining = ratelimit_remaining, title = "Compra y vende criptomonedas en cuestión de minutos", isPurchase = True)
 
         if "buy" in request.form:
             list_request = {
@@ -101,14 +101,18 @@ def purchase():
                 flash("¡Su transacción ha sido realizada correctamente!")
                 return redirect(url_for('history'))
             else:
-                return render_template("purchase.html", msgError={}, form = form, list_request = list_request, ratelimit_remaining = ratelimit_remaining, title = "Compre y venda criptomonedas en cuestión de minutos", isPurchase = True)
+                return render_template("purchase.html", msgError={}, form = form, list_request = list_request, ratelimit_remaining = ratelimit_remaining, title = "Compra y vende criptomonedas en cuestión de minutos", isPurchase = True)
 
 @app.route("/status")
 def status():
     ratelimit_remaining = None
     sum_criptos_exchange = 0
 
-    status = get_status()
+    status = {
+        "recuperado": float(get_recuperado()),
+        "invertido": float(get_invertido())
+    }
+
     criptos_balance = get_balance()
 
     if criptos_balance is not None and len(criptos_balance) > 0:
@@ -126,8 +130,13 @@ def status():
                                 current_balance = item["balance"] / item2["rate"]
                                 sum_criptos_exchange += current_balance
 
-    return render_template("status.html", status = status, value = sum_criptos_exchange, ratelimit_remaining = ratelimit_remaining, title = "Controle el estado de su inversión", isStatus = True, result = 0)
+    return render_template("status.html", status = status, value = sum_criptos_exchange, ratelimit_remaining = ratelimit_remaining, title = "Controle el estado de tu inversión", isStatus = True)
 
 @app.route("/disclosures")
 def disclosures():
     return render_template("disclosures.html", ratelimit_remaining = None, title = "Menciones legales para clientes de Tradue")
+
+@app.route("/balance")
+def balance():
+    balances = get_balance()
+    return render_template("balance.html", balances = balances, ratelimit_remaining = None, title = "Saldos de tus criptomonedas", isBalance = True)

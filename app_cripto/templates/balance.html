@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block section %}
+
+<p class="explain">En este apartado podras consultar cuántas criptomonedas posees exactamente en cada momento:</p>
+
+{% if balances is none or balances|length < 1 %}
+    <p class="message">SIN MOVIMIENTOS: no existen aún operaciones realizadas para mostrar el saldo de tus criptos.</p>
+{% else %}
+    <figure class="tableScroll center">
+        <table role="grid" class="margin-bottom-0 nowrap">
+            <thead>
+                <tr>
+                    <th>Moneda</th>
+                    <th>Saldo actual</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for balance in balances %}
+                <tr>
+                    <td>{{balance.cripto}}</td>
+                    <td>{{balance.balance}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </figure>
+{% endif %}
+
+{% endblock %}

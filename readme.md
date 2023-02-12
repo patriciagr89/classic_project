@@ -20,9 +20,9 @@
     ORIGIN_DATA = "AQUI TU RUTA ARCHIVO BBDD.SQLITE"
     ```
 
-- Obtener de la carpeta 'APP_CRIPTO\DATA\CREATE' las plantillas SQL para crear las tablas e insertar los datos necesarios de tu BBDD:
+- Obtener de la carpeta 'APP_CRIPTO\DATA\CREATE' las dos plantillas SQL para crear las tablas e insertar los datos necesarios de tu BBDD:
 ```
-coins_create.sql
+coins_create.sql (Importante esta tabla para incluir el listado de monedas coin_to del purchase de manera dinámica)
 movements_create.sql
 ```
 

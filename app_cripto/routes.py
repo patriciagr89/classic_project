@@ -130,7 +130,7 @@ def status():
                                 current_balance = item["balance"] / item2["rate"]
                                 sum_criptos_exchange += current_balance
 
-    return render_template("status.html", status = status, value = sum_criptos_exchange, ratelimit_remaining = ratelimit_remaining, title = "Controle el estado de tu inversión", isStatus = True)
+    return render_template("status.html", status = status, value = sum_criptos_exchange, ratelimit_remaining = ratelimit_remaining, title = "Controla el estado de tu inversión", isStatus = True)
 
 @app.route("/disclosures")
 def disclosures():

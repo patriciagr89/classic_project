@@ -1,7 +1,7 @@
 from wtforms.validators import ValidationError
 from app_cripto.models.models_DB import *
 
-#aqui me he basado en la validacion EqualTo de la libreria de validaciones de wtforms
+#aqui me he basado en la validacion EqualTo de la libreria de validaciones de wtforms para controlar que no se introduzcan dos monedas iguales
 class NotEqualTo:
 
     def __init__(self, fieldname, message=None):

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}}</title>
-    <link rel="icon" type="image/x-icon" href="/static/media/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/static/media/favicon.ico"> <!--aqui mi favicon personalizado-->
     <link rel="stylesheet" href="/static/css/pico-bootstrap-grid.css">
     <link rel="stylesheet" href="/static/css/styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
@@ -14,7 +14,7 @@
     <div id="main" class="container">
         <header>
             <div class="row">
-                <div class="col-2 col-md-3"><img class="logo" src="/static/media/logo.png"></div>
+                <div class="col-2 col-md-3"><img class="logo" src="/static/media/logo.png"></div> <!--aqui mi logo personalizado-->
                 <div class="col-10 col-md-9 tittle">{{title}}</div>
             </div>
         </header>
@@ -24,7 +24,7 @@
                 <a href="/" class="button contrast {% if isIndex %} active {% endif %}" {% if isIndex %} disabled = "true" {% endif %}><span class="material-symbols-outlined">home</span>&nbsp;Inicio</a>
                 <a href="history" class="button contrast {% if isHistory %} active {% endif %}" {% if isHistory %} disabled = "true" {% endif %}><span class="material-symbols-outlined">library_add</span>&nbsp;Historial</a>
                 <a href="/purchase" class="button contrast {% if isPurchase %} active {% endif %}" {% if isPurchase %} disabled = "true" {% endif %}><span class="material-symbols-outlined">currency_exchange</span>&nbsp;Compra | Venta</a>
-                <a href="/balance" class="button contrast {% if isBalance %} active {% endif %}" {% if isBalance %} disabled = "true" {% endif %}><span class="material-symbols-outlined">account_balance_wallet</span>&nbsp;Saldo</a>
+                <a href="/balance" class="button contrast {% if isBalance %} active {% endif %}" {% if isBalance %} disabled = "true" {% endif %}><span class="material-symbols-outlined">account_balance_wallet</span>&nbsp;Cartera</a>
                 <a href="/status" class="button contrast {% if isStatus %} active {% endif %}" {% if isStatus %} disabled = "true" {% endif %}><span class="material-symbols-outlined">savings</span>&nbsp;Estado</a>
             </div>
         </section>

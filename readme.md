@@ -1,6 +1,7 @@
 # Aplicación Web registro de movimientos de criptomonedas
 
 - Aplicación Web de registro de criptomonedas realizado en Python con el framework Flask, motor de base de datos SQLite y utilizando las consultas de valores relativos entre las criptomonedas a través del api https://www.coinapi.io/
+- Video preview: https://drive.google.com/file/d/16IHz4jECexf2n2XL3wf42gqZ9a3IZkex/view
 
 ## Instalación
 - Crear el entorno virtual.
